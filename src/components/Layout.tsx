@@ -19,10 +19,14 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <div className="min-h-screen bg-background">
-      <header className="border-b border-border bg-card">
+      <header className="sticky top-0 z-50 border-b border-border bg-card/95 backdrop-blur-sm">
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-16">
-            <Link to="/" className="text-xl font-bold text-primary">
+            <Link to="/" className="flex items-center gap-3 text-xl font-bold text-primary">
+              {/* Logo placeholder - l'utilisateur doit fournir le logo */}
+              <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
+                <span className="text-primary-foreground text-sm font-bold">AGB</span>
+              </div>
               Association Genevoise de Backgammon
             </Link>
 

@@ -7,30 +7,27 @@ const Home = () => {
   return (
     <div className="page-transition">
       {/* Hero Section */}
-      <section className="relative py-20 lg:py-32">
+      <section className="relative py-12 lg:py-20 min-h-[90vh] flex items-center">
         <div className="container mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="space-y-8">
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+            <div className="space-y-6 lg:space-y-8">
               <div>
-                <h1 className="text-5xl lg:text-6xl font-bold text-primary mb-6">
+                <h1 className="text-4xl lg:text-5xl xl:text-6xl font-bold text-primary mb-4 lg:mb-6">
                   Association Genevoise de Backgammon
                 </h1>
-                <p className="text-xl text-accent font-medium mb-8">
+                <p className="text-lg lg:text-xl text-accent font-medium mb-6 lg:mb-8">
                   Le backgammon à Genève, depuis 1976.
                 </p>
               </div>
               
               <div className="prose prose-lg max-w-none">
-                <p className="text-lg text-muted-foreground leading-relaxed">
+                <p className="text-base lg:text-lg text-muted-foreground leading-relaxed mb-4">
                   Depuis près de cinquante ans, l'Association Genevoise de Backgammon 
-                  rassemble les passionnés de ce jeu millénaire dans la région lémanique. 
-                  Nous organisons des tournois réguliers, accueillons les joueurs de tous 
-                  niveaux et contribuons à la promotion du backgammon en Suisse romande.
+                  rassemble les passionnés de ce jeu millénaire dans la région lémanique.
                 </p>
-                <p className="text-lg text-muted-foreground leading-relaxed">
+                <p className="text-base lg:text-lg text-muted-foreground leading-relaxed">
                   Que vous soyez débutant ou joueur expérimenté, notre communauté vous 
-                  attend pour partager la passion de ce jeu de stratégie et de hasard 
-                  raisonné qui fascine depuis des millénaires.
+                  attend pour partager la passion de ce jeu de stratégie.
                 </p>
               </div>
 
@@ -44,11 +41,11 @@ const Home = () => {
               </div>
             </div>
 
-            <div className="lg:order-first">
+            <div className="order-first lg:order-last">
               <img
                 src={heroImage}
                 alt="Plateau de backgammon professionnel"
-                className="w-full h-auto rounded-lg shadow-lg"
+                className="w-full h-auto rounded-lg shadow-lg max-h-[60vh] object-cover"
               />
             </div>
           </div>
