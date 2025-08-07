@@ -21,7 +21,7 @@ const About = () => {
               </CardHeader>
               <CardContent className="prose prose-lg max-w-none">
                 <p className="text-muted-foreground leading-relaxed mb-4">
-                  L'Association Genevoise de Backgammon a été fondée en 1976 par un groupe 
+                  L'Association Genevoise de Backgammon a été fondée en 2005 par un groupe 
                   de passionnés désireux de structurer la pratique de ce jeu ancestral dans 
                   la région lémanique. Depuis cette date, elle n'a cessé de croître et de 
                   s'enrichir, accueillant des joueurs de tous horizons et de tous niveaux.

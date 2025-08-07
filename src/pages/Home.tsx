@@ -16,13 +16,13 @@ const Home = () => {
                   Association Genevoise de Backgammon
                 </h1>
                 <p className="text-lg lg:text-xl text-accent font-medium mb-6 lg:mb-8">
-                  Le backgammon à Genève, depuis 1976.
+                  Le backgammon à Genève, depuis 2005.
                 </p>
               </div>
               
               <div className="prose prose-lg max-w-none">
                 <p className="text-base lg:text-lg text-muted-foreground leading-relaxed mb-4">
-                  Depuis près de cinquante ans, l'Association Genevoise de Backgammon 
+                  Depuis près de vingt ans, l'Association Genevoise de Backgammon 
                   rassemble les passionnés de ce jeu millénaire dans la région lémanique.
                 </p>
                 <p className="text-base lg:text-lg text-muted-foreground leading-relaxed">
@@ -58,10 +58,10 @@ const Home = () => {
           <div className="grid md:grid-cols-3 gap-8">
             <Card>
               <CardContent className="p-6 text-center">
-                <div className="text-3xl font-bold text-accent mb-2">1976</div>
+                <div className="text-3xl font-bold text-accent mb-2">2005</div>
                 <h3 className="text-lg font-semibold mb-2">Fondation</h3>
                 <p className="text-muted-foreground">
-                  Près de 50 ans d'histoire et de passion pour le backgammon
+                  Près de 20 ans d'histoire et de passion pour le backgammon
                 </p>
               </CardContent>
             </Card>

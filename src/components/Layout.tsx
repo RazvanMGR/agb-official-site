@@ -97,7 +97,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
                 © 2024 Association Genevoise de Backgammon. Tous droits réservés.
               </p>
               <p className="text-xs text-muted-foreground mt-1">
-                Le backgammon à Genève, depuis 1976.
+                Le backgammon à Genève, depuis 2005.
               </p>
             </div>
             <div className="text-center md:text-right">
