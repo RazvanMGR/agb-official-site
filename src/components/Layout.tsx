@@ -23,11 +23,20 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-16">
             <Link to="/" className="flex items-center gap-3 text-xl font-bold text-primary">
-              {/* Logo placeholder - l'utilisateur doit fournir le logo */}
-              <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
-                <span className="text-primary-foreground text-sm font-bold">AGB</span>
+              <div className="w-10 h-10 flex items-center justify-center">
+                <svg viewBox="0 0 100 80" className="w-10 h-8">
+                  {/* Triangle beige */}
+                  <polygon points="20,10 80,10 50,60" fill="#D4D0C8" stroke="#000" strokeWidth="2"/>
+                  {/* Cercle rouge */}
+                  <circle cx="50" cy="35" r="15" fill="#FF0000" stroke="#000" strokeWidth="2"/>
+                  {/* Ligne noire en bas */}
+                  <line x1="10" y1="70" x2="90" y2="70" stroke="#000" strokeWidth="3"/>
+                  {/* Texte GB */}
+                  <text x="95" y="50" fontSize="20" fontWeight="bold" fill="#000">GB</text>
+                </svg>
               </div>
-              Association Genevoise de Backgammon
+              <span className="hidden sm:inline">Association Genevoise de Backgammon</span>
+              <span className="sm:hidden">AGB</span>
             </Link>
 
             {/* Desktop Navigation */}
