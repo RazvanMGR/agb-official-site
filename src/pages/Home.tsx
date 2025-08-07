@@ -1,58 +1,52 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Link } from "react-router-dom";
-import heroImage from "@/assets/backgammon-hero.jpg";
 
 const Home = () => {
   return (
     <div className="page-transition">
-      {/* Hero Section */}
-      <section className="relative py-12 lg:py-20 min-h-[90vh] flex items-center">
-        <div className="container mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-            <div className="space-y-6 lg:space-y-8">
-              <div>
-                <h1 className="text-4xl lg:text-5xl xl:text-6xl font-bold text-primary mb-4 lg:mb-6">
-                  Association Genevoise de Backgammon
-                </h1>
-                <p className="text-lg lg:text-xl text-accent font-medium mb-6 lg:mb-8">
-                  Le backgammon à Genève, depuis 2005.
-                </p>
-              </div>
-              
-              <div className="prose prose-lg max-w-none">
-                <p className="text-base lg:text-lg text-muted-foreground leading-relaxed mb-4">
-                  Depuis près de vingt ans, l'Association Genevoise de Backgammon 
-                  rassemble les passionnés de ce jeu millénaire dans la région lémanique.
-                </p>
-                <p className="text-base lg:text-lg text-muted-foreground leading-relaxed">
-                  Que vous soyez débutant ou joueur expérimenté, notre communauté vous 
-                  attend pour partager la passion de ce jeu de stratégie.
-                </p>
-              </div>
+      {/* Hero Section avec vidéo de fond */}
+      <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-black text-white">
+        {/* Vidéo de fond */}
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover z-0"
+        >
+          <source src="/background.mp4" type="video/mp4" />
+        </video>
 
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Button asChild variant="default" size="lg">
-                  <Link to="/about">Découvrir l'association</Link>
-                </Button>
-                <Button asChild variant="outline" size="lg">
-                  <Link to="/events">Prochains événements</Link>
-                </Button>
-              </div>
-            </div>
+        {/* Overlay sombre */}
+        <div className="absolute inset-0 bg-black bg-opacity-60 z-10" />
 
-            <div className="order-first lg:order-last">
-              <img
-                src={heroImage}
-                alt="Plateau de backgammon professionnel"
-                className="w-full h-auto rounded-lg shadow-lg max-h-[60vh] object-cover"
-              />
-            </div>
+        {/* Contenu centré */}
+        <div className="relative z-20 container mx-auto px-4 text-center max-w-3xl">
+          <h1 className="text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 text-white">
+            Association Genevoise de Backgammon
+          </h1>
+          <p className="text-lg lg:text-xl text-accent font-medium mb-6">
+            Le backgammon à Genève, depuis 2005.
+          </p>
+          <p className="text-base lg:text-lg text-gray-300 leading-relaxed mb-6">
+            Depuis près de vingt ans, l'Association Genevoise de Backgammon rassemble les passionnés
+            de ce jeu millénaire dans la région lémanique. Que vous soyez débutant ou joueur expérimenté,
+            notre communauté vous attend pour partager la passion de ce jeu de stratégie.
+          </p>
+
+          <div className="flex flex-col sm:flex-row justify-center gap-4 mt-6">
+            <Button asChild variant="default" size="lg">
+              <Link to="/about">Découvrir l'association</Link>
+            </Button>
+            <Button asChild variant="outline" size="lg">
+              <Link to="/events">Prochains événements</Link>
+            </Button>
           </div>
         </div>
       </section>
 
-      {/* Quick Info Section */}
+      {/* Section Informations rapides */}
       <section className="py-16 bg-muted/30">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-3 gap-8">
