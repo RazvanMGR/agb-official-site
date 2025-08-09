@@ -5,37 +5,70 @@ import { Link } from "react-router-dom";
 const Home = () => {
   return (
     <div className="page-transition">
-      {/* HERO — fond noir, texte blanc */}
+      {/* HERO — vidéo de fond + overlay + texte à gauche (style maquette) */}
       <section className="relative min-h-[90vh] flex items-center overflow-hidden bg-black text-white">
-        {/* Contenu centré */}
-        <div className="relative z-20 container mx-auto px-4 text-center max-w-3xl">
-          <h1 className="font-display text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 text-[#E8DDC8]">
-            Association Genevoise de Backgammon
-          </h1>
+        {/* Vidéo de fond */}
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="metadata"
+          aria-hidden="true"
+          className="absolute inset-0 w-full h-full object-cover z-0"
+        >
+          <source src="/background.mp4" type="video/mp4" />
+        </video>
 
-          <p className="text-lg lg:text-xl text-accent font-medium mb-6">
-            Le backgammon à Genève, depuis 2005.
-          </p>
+        {/* Overlay: très sombre à gauche, plus léger à droite */}
+        <div className="absolute inset-0 z-10 bg-gradient-to-r from-black/85 via-black/60 to-black/20" />
 
-          <p className="text-base lg:text-lg text-white/80 leading-relaxed mb-8">
-            Depuis près de vingt ans, l’Association Genevoise de Backgammon rassemble les
-            passionnés de ce jeu millénaire dans la région lémanique. Que vous soyez débutant
-            ou joueur expérimenté, notre communauté vous attend pour partager la passion de ce
-            jeu de stratégie.
-          </p>
+        {/* Cercles décoratifs à droite (subtils) */}
+        <svg
+          className="pointer-events-none absolute right-[-12%] top-[-12%] z-10 opacity-25 hidden md:block"
+          width="900" height="900" viewBox="0 0 900 900" fill="none"
+        >
+          <circle cx="450" cy="450" r="280" stroke="white" strokeOpacity="0.12" />
+          <circle cx="450" cy="450" r="360" stroke="white" strokeOpacity="0.08" />
+          <circle cx="450" cy="450" r="440" stroke="white" strokeOpacity="0.06" />
+        </svg>
 
-          <div className="flex flex-col sm:flex-row justify-center gap-4 mt-6">
-            <Button asChild size="lg">
-              <Link to="/about">Découvrir l'association</Link>
-            </Button>
+        {/* Contenu aligné à gauche */}
+        <div className="relative z-20 container mx-auto px-4">
+          <div className="grid lg:grid-cols-2 items-center gap-8">
+            {/* Colonne gauche : texte */}
+            <div className="max-w-xl">
+              <h1 className="font-display text-[36px] leading-tight sm:text-[44px] lg:text-[56px] text-[#E8DDC8] mb-4">
+                Association Genevoise de Backgammon
+              </h1>
 
-            {/* Bouton lisible : texte + bordure blancs, fond transparent */}
-            <Link
-              to="/events"
-              className="inline-flex items-center justify-center h-11 px-6 rounded border border-white/80 text-white hover:bg-white hover:text-black transition"
-            >
-              Prochains événements
-            </Link>
+              <p className="text-lg lg:text-xl text-red-400 font-medium mb-6">
+                Le backgammon à Genève, depuis 2005.
+              </p>
+
+              <p className="text-base lg:text-lg text-white/80 leading-relaxed mb-8">
+                Depuis près de vingt ans, l’Association Genevoise de Backgammon rassemble les
+                passionnés de ce jeu millénaire dans la région lémanique. Que vous soyez débutant
+                ou joueur expérimenté, notre communauté vous attend pour partager la passion de ce
+                jeu de stratégie.
+              </p>
+
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Button asChild size="lg">
+                  <Link to="/about">Découvrir l'association</Link>
+                </Button>
+                {/* CTA lisible : cadre blanc */}
+                <Link
+                  to="/events"
+                  className="inline-flex items-center justify-center h-11 px-6 rounded border border-white/90 text-white hover:bg-white hover:text-black transition"
+                >
+                  Prochains événements
+                </Link>
+              </div>
+            </div>
+
+            {/* Colonne droite vide : laisse respirer la vidéo comme sur la maquette */}
+            <div className="hidden lg:block" />
           </div>
         </div>
       </section>
@@ -81,4 +114,3 @@ const Home = () => {
 };
 
 export default Home;
-
