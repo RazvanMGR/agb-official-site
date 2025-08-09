@@ -17,11 +17,10 @@ export default {
       screens: { "2xl": "1400px" },
     },
     extend: {
-      /* ↓↓↓ ajoute ce bloc ↓↓↓ */
-      fontFamily: {
-        display: ['"Playfair Display"', "serif"], // Titres
-        sans: ['Montserrat', 'ui-sans-serif', 'system-ui', 'sans-serif'], // Texte général
-},
+  fontFamily: {
+    display: ['"Playfair Display"', 'serif'],   // Titres
+    serif: ['Lora', 'Georgia', 'serif'],        // Corps du texte
+  },
       /* ↑↑↑ ajoute ce bloc ↑↑↑ */
 
       colors: {
