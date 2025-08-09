@@ -21,13 +21,13 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
     <div className="min-h-screen bg-background">
       <header className="sticky top-0 z-50 border-b border-border bg-card/95 backdrop-blur-sm">
         <div className="container mx-auto px-4">
-          <div className="flex items-center justify-between h-20">
+          <div className="flex items-center justify-between h-26">
             <Link to="/" className="flex items-center gap-3 text-xl font-bold text-primary">
-              <div className="w-16 h-16 flex items-center justify-center">
+              <div className="w-20 h-20 flex items-center justify-center">
               <img
                 src="/8adea49a-2229-46f1-a37f-5d1a17e5f510.png"
                 alt="Logo AGB"
-                className="w-16 h-16 object-contain"
+                className="w-20 h-20 object-contain"
                 />
               </div>
               <span className="hidden sm:inline">Association Genevoise de Backgammon</span>
