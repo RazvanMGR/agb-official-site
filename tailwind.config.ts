@@ -19,9 +19,9 @@ export default {
     extend: {
       /* ↓↓↓ ajoute ce bloc ↓↓↓ */
       fontFamily: {
-        display: ['"Playfair Display"', "serif"],          // titres
-        sans: ["Inter", "ui-sans-serif", "system-ui", "sans-serif"], // texte/UI
-      },
+        display: ['"Playfair Display"', "serif"], // Titres
+        sans: ['Montserrat', 'ui-sans-serif', 'system-ui', 'sans-serif'], // Texte général
+},
       /* ↑↑↑ ajoute ce bloc ↑↑↑ */
 
       colors: {
