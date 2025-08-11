@@ -68,7 +68,7 @@ function HeroReveal({ children }: { children: React.ReactNode }) {
       },
       { threshold: 0, rootMargin: "0px 0px -10% 0px" }
     );
-    obs.observe(el);
+  obs.observe(el);
     return () => obs.disconnect();
   }, []);
 
@@ -88,7 +88,6 @@ function HeroReveal({ children }: { children: React.ReactNode }) {
 }
 
 const Home = () => {
-  // style commun pour les deux CTA
   const cta =
     "inline-flex items-center justify-center h-11 px-6 rounded-md border border-white/80 text-white/95 " +
     "bg-white/0 hover:bg-white hover:text-black transition shadow-sm backdrop-blur-sm";
@@ -96,30 +95,27 @@ const Home = () => {
   return (
     <div
       className={[
-        // FOND GLOBAL near-black en dégradé (plus premium que #000)
         "min-h-screen bg-gradient-to-br from-[#0b0b0d] to-[#121214] text-white",
         "relative overflow-x-clip page-transition font-serif",
       ].join(" ")}
     >
-      {/* GRAIN GLOBAL (optionnel): ajoute /noise.png dans public/ pour l'activer */}
+      {/* Grain global (optionnel si /noise.png existe) */}
       <div
         className="pointer-events-none absolute inset-0 z-[1] opacity-[0.07] mix-blend-overlay"
         style={{ backgroundImage: "url('/noise.png')", backgroundSize: "auto" }}
       />
-
-      {/* Vignette radiale subtile */}
       <div className="pointer-events-none absolute inset-0 z-[1] bg-[radial-gradient(80%_60%_at_50%_20%,rgba(255,255,255,0.05),rgba(0,0,0,0))]" />
 
       {/* HERO — vidéo full screen avec fondu bas */}
       <section className="relative min-h-screen flex items-center overflow-hidden">
-        {/* CONTENEUR MASQUÉ: la vidéo + overlay “fondent” vers transparent en bas */}
+        {/* Bloc vidéo masqué: fondu plus LONG (55% → 95%) */}
         <div
           className="absolute inset-0 z-0"
-         style={{
-          WebkitMaskImage:
-          "linear-gradient(to bottom, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 85%)",
-          maskImage:
-          "linear-gradient(to bottom, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 85%)",
+          style={{
+            WebkitMaskImage:
+              "linear-gradient(to bottom, rgba(0,0,0,1) 55%, rgba(0,0,0,0) 95%)",
+            maskImage:
+              "linear-gradient(to bottom, rgba(0,0,0,1) 55%, rgba(0,0,0,0) 95%)",
           }}
         >
           <video
@@ -134,16 +130,14 @@ const Home = () => {
             <source src="/background.mp4" type="video/mp4" />
           </video>
 
-          {/* OVERLAY CINÉMA — variante CHAUDE */}
+          {/* Overlay cinéma (chaud). Garde-le sous le fondu bas. */}
           <div className="absolute inset-0 bg-gradient-to-r from-[#0b0a09]/90 via-[#1a120f]/70 to-transparent" />
 
-          {/*
-            ➜ Variante FROIDE (remplace la div ci-dessus par celle-ci):
-            <div className="absolute inset-0 bg-gradient-to-r from-[#0a0c0e]/90 via-[#101820]/70 to-transparent" />
-          */}
+          {/* FONDU de secours vers la couleur de fond (assure la fusion visuelle) */}
+          <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-b from-transparent to-[#121214]" />
         </div>
 
-        {/* CONTENU par-dessus (non masqué) */}
+        {/* Contenu par-dessus */}
         <div className="relative z-20 container mx-auto px-4">
           <HeroReveal>
             <div className="max-w-xl">
@@ -171,7 +165,8 @@ const Home = () => {
       {/* SECTION FAITS CLÉS */}
       <section className="relative py-24">
         <div className="absolute inset-0 bg-[radial-gradient(60%_60%_at_50%_0%,rgba(255,255,255,0.05),rgba(0,0,0,0))]" />
-        <div className="absolute inset-x-0 top-0 h-px bg-white/10" />
+        {/* ⬇️ SUPPRIMÉE: la bordure top créait la ligne visible sous la vidéo */}
+        {/* <div className="absolute inset-x-0 top-0 h-px bg-white/10" /> */}
         <div className="absolute inset-x-0 bottom-0 h-px bg-white/10" />
 
         <div className="relative container mx-auto px-4">
