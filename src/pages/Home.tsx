@@ -4,15 +4,15 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Link } from "react-router-dom";
 import { Trophy, MapPin, Users } from "lucide-react";
 
-/** Révèle son contenu au scroll avec une transition ultra fluide (pas de keyframes) */
+/** Révèle en douceur: présent mais atténué, puis net */
 function Reveal({
   children,
   delay = 0,
   threshold = 0.15,
 }: {
   children: React.ReactNode;
-  delay?: number;      // en secondes
-  threshold?: number;  // part visible pour déclencher
+  delay?: number;
+  threshold?: number;
 }) {
   const ref = useRef<HTMLDivElement | null>(null);
   const [visible, setVisible] = useState(false);
@@ -20,19 +20,17 @@ function Reveal({
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-
     const obs = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          // petit rafraîchissement pour laisser le layout se stabiliser avant la transition
           requestAnimationFrame(() => setVisible(true));
           obs.disconnect();
         }
       },
       {
         threshold,
-        // déclenche un peu avant le viewport bas pour une impression plus douce
-        rootMargin: "0px 0px -10% 0px",
+        // on lance l’anim AVANT que l’élément soit bien au centre
+        rootMargin: "0px 0px -30% 0px",
       }
     );
     obs.observe(el);
@@ -42,20 +40,24 @@ function Reveal({
   return (
     <div
       ref={ref}
-      // on utilise une transition pure (opacity + transform) + easing bézier très douce
       style={{ transitionDelay: `${delay}s` }}
       className={[
-        "transform-gpu will-change-transform",                 // perf + GPU
-        "transition-opacity transition-transform",             // propriétés à animer
-        "duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]",     // easing douce type 'easeOutQuint'
-        "motion-reduce:transition-none",                       // accessibilité
-        visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6",
+        "transform-gpu will-change-transform",
+        // on transitionne aussi le flou -> impression de “mise au point”
+        "transition-all duration-800 ease-[cubic-bezier(0.22,1,0.36,1)]",
+        "motion-reduce:transition-none",
+        visible
+          // état final: net, plein, à sa place
+          ? "opacity-100 translate-y-0 scale-100 blur-0"
+          // état initial: déjà présent mais atténué (pas invisible)
+          : "opacity-60 translate-y-3 scale-[0.985] blur-[2px]",
       ].join(" ")}
     >
       {children}
     </div>
   );
 }
+
 
 const Home = () => {
   // style commun pour les deux CTA
