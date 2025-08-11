@@ -106,39 +106,27 @@ const Home = () => {
       />
       <div className="pointer-events-none absolute inset-0 z-[1] bg-[radial-gradient(80%_60%_at_50%_20%,rgba(255,255,255,0.05),rgba(0,0,0,0))]" />
 
-      {/* HERO — vidéo full screen, désaturée, qui FADE en TRANSPARENT en bas */}
+      {/* HERO — vidéo full screen, PAS de fade, PAS de filtre */}
       <section className="relative min-h-screen flex items-center overflow-hidden">
-        {/* Conteneur masqué: dégradé alpha only (no color) */}
-        <div
-          className="absolute inset-0 z-0"
-          style={{
-            WebkitMaskImage:
-              "linear-gradient(to bottom, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 98%)",
-            maskImage:
-              "linear-gradient(to bottom, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 98%)",
-          }}
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="metadata"
+          aria-hidden="true"
+          className="absolute inset-0 w-full h-full object-cover z-0"
         >
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            preload="metadata"
-            aria-hidden="true"
-            className="absolute inset-0 w-full h-full object-cover"
-            // désaturation + légère baisse contraste/brightness, pas de teinte
-            style={{
-              filter: "grayscale(0.9) saturate(0.6) contrast(0.9) brightness(0.9)",
-            }}
-          >
-            <source src="/background.mp4" type="video/mp4" />
-          </video>
+          <source src="/background.mp4" type="video/mp4" />
+        </video>
 
-          {/* plus d’overlay coloré ; juste une légère vignette neutre (facultatif) */}
-          <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(120%_80%_at_50%_20%,rgba(0,0,0,0.35),rgba(0,0,0,0))]" />
-        </div>
+        {/* Overlay cinéma neutre (sans teinte forte). Remplacer par variante froide si tu veux */}
+        <div className="absolute inset-0 z-10 bg-gradient-to-r from-black/80 via-black/60 to-transparent" />
+        {/*
+          Variante froide:
+          <div className="absolute inset-0 z-10 bg-gradient-to-r from-[#0a0c0e]/85 via-[#0a0c0e]/60 to-transparent" />
+        */}
 
-        {/* Contenu par-dessus */}
         <div className="relative z-20 container mx-auto px-4">
           <HeroReveal>
             <div className="max-w-xl">
@@ -163,10 +151,10 @@ const Home = () => {
         </div>
       </section>
 
-      {/* SECTION FAITS CLÉS (bordure top retirée pour éviter la ligne) */}
+      {/* SECTION FAITS CLÉS */}
       <section className="relative py-24">
         <div className="absolute inset-0 bg-[radial-gradient(60%_60%_at_50%_0%,rgba(255,255,255,0.05),rgba(0,0,0,0))]" />
-        {/* <div className="absolute inset-x-0 top-0 h-px bg-white/10" /> */}
+        <div className="absolute inset-x-0 top-0 h-px bg-white/10" />
         <div className="absolute inset-x-0 bottom-0 h-px bg-white/10" />
 
         <div className="relative container mx-auto px-4">
