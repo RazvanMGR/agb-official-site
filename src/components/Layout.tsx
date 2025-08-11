@@ -41,7 +41,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
 <header
   className={`fixed top-0 inset-x-0 z-50 transition-colors duration-300 ${
     location.pathname === "/"
-      ? "bg-gradient-to-b from-black/70 via-black/50 to-black/30 backdrop-blur-sm"
+      ? "bg-gradient-to-b from-black/70 via-black/40 to-black/5 backdrop-blur-sm"
       : "bg-black/80 backdrop-blur-md border-b border-white/10"
   }`}
 >
