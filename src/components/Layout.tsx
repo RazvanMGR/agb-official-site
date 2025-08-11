@@ -4,36 +4,40 @@ import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
+const NAV_H = 88; // ~ h-20 md:h-24
+
 const Layout = ({ children }: { children: React.ReactNode }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isTransparent, setIsTransparent] = useState(true);
   const location = useLocation();
 
+  // Navbar transparente en haut partout.
+  // Sur la Home: se base sur #hero-title (ou [data-hero]).
+  // Ailleurs: transparente tant qu'on n'a pas scrollé ~50px.
   const recompute = useCallback(() => {
-    const navH = 88; // ~ h-20 md:h-24
-    // Cherche un repère "hero" s'il existe (Home: #hero-title ; fallback: [data-hero])
     const heroEl =
       (document.getElementById("hero-title") as HTMLElement | null) ||
       (document.querySelector("[data-hero]") as HTMLElement | null);
 
-    // Seuil où la navbar devient sombre
     const triggerY = heroEl
-      ? heroEl.getBoundingClientRect().top + window.scrollY - navH
-      : 40; // pas de hero: reste transparente tant qu'on n'a pas scrollé ~40px
+      ? heroEl.getBoundingClientRect().top + window.scrollY - NAV_H
+      : 50;
 
     setIsTransparent(window.scrollY < Math.max(0, triggerY));
   }, []);
 
   useEffect(() => {
-    recompute();
+    // transparent au mount, puis calcule après paint
+    setIsTransparent(true);
+    const id = window.setTimeout(recompute, 0);
+
     window.addEventListener("scroll", recompute, { passive: true });
     window.addEventListener("resize", recompute);
-    // recalc à chaque changement de page (et juste après le paint)
-    const id = window.setTimeout(recompute, 0);
+
     return () => {
+      window.clearTimeout(id);
       window.removeEventListener("scroll", recompute);
       window.removeEventListener("resize", recompute);
-      window.clearTimeout(id);
     };
   }, [recompute, location.pathname]);
 
@@ -66,11 +70,13 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
                 alt="Logo AGB"
                 className="h-12 w-12 md:h-14 md:w-14 object-contain"
               />
-              <span className="hidden sm:inline font-lora text-2xl md:text-3xl tracking-[0.05em]">GB</span>
+              <span className="hidden sm:inline font-lora text-2xl md:text-3xl tracking-[0.05em]">
+                GB
+              </span>
               <span className="sm:hidden font-lora text-xl tracking-[0.05em]">GB</span>
             </Link>
 
-            {/* Desktop */}
+            {/* Desktop nav */}
             <nav className="hidden md:flex items-center gap-8">
               {navigation.map((item) => (
                 <Link
@@ -89,7 +95,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
               ))}
             </nav>
 
-            {/* Mobile */}
+            {/* Mobile menu button */}
             <Button
               variant="ghost"
               size="sm"
@@ -101,6 +107,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
             </Button>
           </div>
 
+          {/* Mobile nav */}
           {isMenuOpen && (
             <nav
               className={[
@@ -126,10 +133,10 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
         </div>
       </header>
 
-      {/* CONTENT (réserve la place de la navbar) */}
+      {/* CONTENT — réserve la place de la navbar */}
       <main className="pt-24 md:pt-28 flex-1">{children}</main>
 
-      {/* FOOTER */}
+      {/* FOOTER (partout) */}
       <footer className="bg-black border-t border-white/10 text-white">
         <div className="container mx-auto px-4 py-10">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
