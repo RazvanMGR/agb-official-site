@@ -115,11 +115,11 @@ const Home = () => {
         {/* CONTENEUR MASQUÉ: la vidéo + overlay “fondent” vers transparent en bas */}
         <div
           className="absolute inset-0 z-0"
-          style={{
-            WebkitMaskImage:
-              "linear-gradient(to bottom, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%)",
-            maskImage:
-              "linear-gradient(to bottom, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%)",
+         style={{
+          WebkitMaskImage:
+          "linear-gradient(to bottom, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 85%)",
+          maskImage:
+          "linear-gradient(to bottom, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 85%)",
           }}
         >
           <video
