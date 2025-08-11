@@ -5,18 +5,18 @@ const About = () => {
   return (
     <div className="relative min-h-screen page-transition">
       {/* Image de fond */}
-      <img
+        <img
         src="/table.png"
         alt=""
         aria-hidden
         draggable="false"
-        className="absolute top-0 left-0 right-0 z-0 w-full h-full object-cover blur-sm brightness-[.82] saturate-75"
-      />
+        className="absolute inset-0 z-0 w-full h-full object-cover object-center blur-sm brightness-[.82] saturate-75"
+        />  
       {/* Voile sombre */}
       <div className="absolute top-0 left-0 right-0 bottom-0 z-10 bg-black/45" />
 
       {/* Contenu */}
-      <div className="relative z-20 container mx-auto px-4 py-32">
+      <div className="relative z-20 container mx-auto px-4 pt-28 pb-32">
         <div className="max-w-4xl mx-auto">
           <Card className="rounded-2xl bg-black/50 backdrop-blur-sm border border-white/10">
             <div className="p-8 md:p-10">
