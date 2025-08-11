@@ -4,11 +4,11 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Link } from "react-router-dom";
 import { Trophy, MapPin, Users } from "lucide-react";
 
-/** Révèle son contenu au scroll (IntersectionObserver) */
+/** Révèle son contenu au scroll avec une transition ultra fluide (pas de keyframes) */
 function Reveal({
   children,
   delay = 0,
-  threshold = 0.2,
+  threshold = 0.15,
 }: {
   children: React.ReactNode;
   delay?: number;      // en secondes
@@ -20,14 +20,20 @@ function Reveal({
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
+
     const obs = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setVisible(true);
-          obs.disconnect(); // on n'anime qu'une fois
+          // petit rafraîchissement pour laisser le layout se stabiliser avant la transition
+          requestAnimationFrame(() => setVisible(true));
+          obs.disconnect();
         }
       },
-      { threshold }
+      {
+        threshold,
+        // déclenche un peu avant le viewport bas pour une impression plus douce
+        rootMargin: "0px 0px -10% 0px",
+      }
     );
     obs.observe(el);
     return () => obs.disconnect();
@@ -36,8 +42,15 @@ function Reveal({
   return (
     <div
       ref={ref}
-      style={{ animationDelay: `${delay}s` }}
-      className={`${visible ? "animate-fadeInUp" : "opacity-0 translate-y-6"} will-change-transform`}
+      // on utilise une transition pure (opacity + transform) + easing bézier très douce
+      style={{ transitionDelay: `${delay}s` }}
+      className={[
+        "transform-gpu will-change-transform",                 // perf + GPU
+        "transition-opacity transition-transform",             // propriétés à animer
+        "duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]",     // easing douce type 'easeOutQuint'
+        "motion-reduce:transition-none",                       // accessibilité
+        visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6",
+      ].join(" ")}
     >
       {children}
     </div>
@@ -119,7 +132,7 @@ const Home = () => {
             </Reveal>
 
             {/* Carte 2 */}
-            <Reveal delay={0.15}>
+            <Reveal delay={0.12}>
               <Card className="group rounded-2xl bg-white/5 ring-1 ring-white/10 shadow-lg backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:bg-white/10 hover:ring-white/20">
                 <CardContent className="p-10 text-center">
                   <div className="mx-auto mb-5 grid h-14 w-14 place-items-center rounded-full bg-red-600/20 transition-colors group-hover:bg-red-600/30">
@@ -135,7 +148,7 @@ const Home = () => {
             </Reveal>
 
             {/* Carte 3 */}
-            <Reveal delay={0.3}>
+            <Reveal delay={0.24}>
               <Card className="group rounded-2xl bg-white/5 ring-1 ring-white/10 shadow-lg backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:bg-white/10 hover:ring-white/20">
                 <CardContent className="p-10 text-center">
                   <div className="mx-auto mb-5 grid h-14 w-14 place-items-center rounded-full bg-red-600/20 transition-colors group-hover:bg-red-600/30">
