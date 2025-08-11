@@ -43,6 +43,9 @@ const Home = () => {
     "inline-flex items-center justify-center h-11 px-6 rounded-md border border-white/80 text-white/95 " +
     "bg-white/0 hover:bg-white hover:text-black transition shadow-sm backdrop-blur-sm";
 
+  // ⚠️ Mets exactement la couleur du footer ici si elle diffère.
+  const footerBg = "#0b0b0d";
+
   return (
     <div
       className={[
@@ -59,36 +62,31 @@ const Home = () => {
 
       {/* HERO — vidéo full screen */}
       <section className="relative min-h-screen flex items-center overflow-hidden">
-        {/* Wrapper arrondi pour la vidéo + overlays */}
-        <div className="absolute inset-0 overflow-hidden rounded-b-[2rem]">
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            preload="metadata"
-            aria-hidden="true"
-            className="absolute inset-0 w-full h-full object-cover"
-          >
-            <source src="/background.mp4" type="video/mp4" />
-          </video>
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="metadata"
+          aria-hidden="true"
+          className="absolute inset-0 w-full h-full object-cover z-0"
+        >
+          <source src="/background.mp4" type="video/mp4" />
+        </video>
 
-          {/* Overlay cinéma neutre (suit l'arrondi) */}
-          <div className="absolute inset-0 z-10 bg-gradient-to-r from-black/80 via-black/60 to-transparent rounded-b-[2rem]" />
+        {/* Overlay cinéma neutre */}
+        <div className="absolute inset-0 z-10 bg-gradient-to-r from-black/80 via-black/60 to-transparent" />
 
-          {/* Masque CSS bas — fondu très doux vers le fond de page (suit l'arrondi) */}
-          <div
-            className="absolute inset-0 z-10 pointer-events-none rounded-b-[2rem]"
-            style={{
-              backgroundColor: "#0b0b0d",
-              WebkitMaskImage: "linear-gradient(to top, black 14rem, transparent 30rem)",
-              maskImage: "linear-gradient(to top, black 14rem, transparent 30rem)",
-            }}
-          />
-        </div>
-
-        {/* (optionnel) légère ombre portée sous les coins arrondis pour le relief */}
-        <div className="absolute bottom-0 left-0 right-0 h-6 rounded-b-[2rem] shadow-[0_8px_24px_rgba(0,0,0,0.45)] pointer-events-none" />
+        {/* Peinture du fond du footer + masque vers le haut (aucune ligne de séparation) */}
+        <div
+          className="absolute inset-0 z-10 pointer-events-none"
+          style={{
+            backgroundColor: footerBg,
+            // Bande opaque (couleur footer) sur ~12rem en bas, puis fondu doux jusque ~36rem
+            WebkitMaskImage: "linear-gradient(to top, black 0, black 12rem, transparent 36rem)",
+            maskImage: "linear-gradient(to top, black 0, black 12rem, transparent 36rem)",
+          }}
+        />
 
         <div className="relative z-20 container mx-auto px-4">
           <HeroReveal>
@@ -113,6 +111,12 @@ const Home = () => {
           </HeroReveal>
         </div>
       </section>
+
+      {/* Bridge anti-démarcation si le Footer suit directement */}
+      <div
+        className="-mt-24 h-24 relative z-10 pointer-events-none bg-gradient-to-t from-[#0b0b0d] to-transparent"
+        style={{ from: footerBg }}
+      />
     </div>
   );
 };
