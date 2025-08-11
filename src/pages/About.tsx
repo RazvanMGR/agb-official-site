@@ -1,10 +1,11 @@
 // src/pages/About.tsx
 import { Card } from "@/components/ui/card";
+import { Trophy, MapPin, Users } from "lucide-react";
 
 const About = () => {
   return (
     <div className="relative min-h-screen page-transition">
-      {/* FOND FIXE (derrière la navbar, sans z négatif) */}
+      {/* Fond fixe pleine fenêtre */}
       <div className="fixed inset-0 z-0 pointer-events-none">
         <img
           src="/table.png"
@@ -16,19 +17,51 @@ const About = () => {
         <div className="absolute inset-0 bg-black/45" />
       </div>
 
-      {/* CONTENU au-dessus du fond */}
-      <div className="relative z-10 container mx-auto px-4 pt-28 pb-32">
+      {/* Contenu (padding top réduit pour rapprocher de la navbar) */}
+      <div className="relative z-10 container mx-auto px-4 pt-20 md:pt-24 pb-24">
         <div className="max-w-4xl mx-auto">
           <Card className="rounded-2xl bg-black/50 backdrop-blur-sm border border-white/10">
-            <div className="p-8 md:p-10">
-              <header className="text-center mb-10">
-                <h1 className="text-4xl lg:text-5xl font-bold text-white drop-shadow-md mb-4">
+            <div className="p-6 md:p-10">
+              {/* En‑tête */}
+              <header className="text-center mb-8 md:mb-10">
+                <h1 className="text-4xl lg:text-5xl font-bold text-white drop-shadow-md mb-3">
                   À propos de l'association
                 </h1>
-                <p className="text-lg md:text-xl text-white/90">
+                <p className="text-base md:text-lg text-white/90">
                   Une histoire riche et une mission claire pour promouvoir le backgammon
                 </p>
               </header>
+
+              {/* FAITS CLÉS — compact, accessible, responsive */}
+              <div className="grid gap-4 sm:grid-cols-3 mb-10">
+                <div className="flex items-center gap-3 rounded-xl border border-white/10 bg-white/5 px-4 py-3">
+                  <div className="grid h-9 w-9 place-items-center rounded-full bg-red-600/20">
+                    <Trophy className="h-5 w-5 text-red-400" />
+                  </div>
+                  <div>
+                    <div className="text-sm text-white/70">Fondation</div>
+                    <div className="text-white font-semibold leading-tight">2005</div>
+                  </div>
+                </div>
+                <div className="flex items-center gap-3 rounded-xl border border-white/10 bg-white/5 px-4 py-3">
+                  <div className="grid h-9 w-9 place-items-center rounded-full bg-red-600/20">
+                    <MapPin className="h-5 w-5 text-red-400" />
+                  </div>
+                  <div>
+                    <div className="text-sm text-white/70">Localisation</div>
+                    <div className="text-white font-semibold leading-tight">Genève</div>
+                  </div>
+                </div>
+                <div className="flex items-center gap-3 rounded-xl border border-white/10 bg-white/5 px-4 py-3">
+                  <div className="grid h-9 w-9 place-items-center rounded-full bg-red-600/20">
+                    <Users className="h-5 w-5 text-red-400" />
+                  </div>
+                  <div>
+                    <div className="text-sm text-white/70">Niveaux</div>
+                    <div className="text-white font-semibold leading-tight">Tous</div>
+                  </div>
+                </div>
+              </div>
 
               {/* Notre histoire */}
               <section className="prose prose-invert prose-lg max-w-none">
@@ -50,7 +83,7 @@ const About = () => {
                 </p>
                 <p className="text-white/90 leading-relaxed">
                   Aujourd'hui, forte de son expérience et de sa réputation, l'Association
-                  Genevoise de Backgammon continue de rayonner bien au-delà des frontières
+                  Genevoise de Backgammon continue de rayonner bien au‑delà des frontières
                   cantonales, attirant des joueurs de toute la Suisse et des pays voisins.
                 </p>
               </section>
@@ -65,7 +98,7 @@ const About = () => {
                 <div className="grid md:grid-cols-2 gap-6">
                   <div className="space-y-4">
                     <div className="flex items-start gap-3">
-                      <span className="mt-3 inline-block w-2 h-2 rounded-full bg-accent/90"></span>
+                      <span className="mt-3 inline-block w-2 h-2 rounded-full bg-accent/90" />
                       <div>
                         <h3 className="font-semibold text-white mb-1">Organiser des tournois</h3>
                         <p className="text-white/85">
@@ -74,9 +107,8 @@ const About = () => {
                         </p>
                       </div>
                     </div>
-
                     <div className="flex items-start gap-3">
-                      <span className="mt-3 inline-block w-2 h-2 rounded-full bg-accent/90"></span>
+                      <span className="mt-3 inline-block w-2 h-2 rounded-full bg-accent/90" />
                       <div>
                         <h3 className="font-semibold text-white mb-1">Rassembler les joueurs</h3>
                         <p className="text-white/85">
@@ -89,7 +121,7 @@ const About = () => {
 
                   <div className="space-y-4">
                     <div className="flex items-start gap-3">
-                      <span className="mt-3 inline-block w-2 h-2 rounded-full bg-accent/90"></span>
+                      <span className="mt-3 inline-block w-2 h-2 rounded-full bg-accent/90" />
                       <div>
                         <h3 className="font-semibold text-white mb-1">Promouvoir le jeu</h3>
                         <p className="text-white/85">
@@ -97,9 +129,8 @@ const About = () => {
                         </p>
                       </div>
                     </div>
-
                     <div className="flex items-start gap-3">
-                      <span className="mt-3 inline-block w-2 h-2 rounded-full bg-accent/90"></span>
+                      <span className="mt-3 inline-block w-2 h-2 rounded-full bg-accent/90" />
                       <div>
                         <h3 className="font-semibold text-white mb-1">Former et éduquer</h3>
                         <p className="text-white/85">
