@@ -10,12 +10,13 @@ const About = () => {
         alt=""
         aria-hidden
         draggable="false"
-        className="absolute inset-0 -z-10 w-full h-full object-cover blur-sm brightness-[.82] saturate-75"
+        className="absolute inset-0 z-0 w-full h-full object-cover blur-sm brightness-[.82] saturate-75"
       />
-      {/* Assombrissement pour lisibilité */}
-      <div className="absolute inset-0 -z-10 bg-black/45" />
+      {/* Voile pour la lisibilité du texte */}
+      <div className="absolute inset-0 z-10 bg-black/45" />
 
-      <div className="container mx-auto px-4 py-16">
+      {/* Contenu au-dessus du voile */}
+      <div className="relative z-20 container mx-auto px-4 py-16">
         <div className="max-w-4xl mx-auto">
           {/* Panneau transparent comme la navbar */}
           <Card className="rounded-2xl bg-black/50 backdrop-blur-sm border border-white/10">
@@ -49,7 +50,7 @@ const About = () => {
                 </p>
                 <p className="text-white/85 leading-relaxed">
                   Aujourd'hui, forte de son expérience et de sa réputation, l'Association
-                  Genevoise de Backgammon continue de rayonner bien au-delà des frontières
+                  Genevoise de Backgammon continue de rayonner bien au‑delà des frontières
                   cantonales, attirant des joueurs de toute la Suisse et des pays voisins.
                 </p>
               </section>
@@ -66,8 +67,8 @@ const About = () => {
                       <div>
                         <h3 className="font-semibold text-white mb-1">Organiser des tournois</h3>
                         <p className="text-white/80">
-                          Nous proposons régulièrement des compétitions officielles et
-                          amicales pour tous les niveaux de jeu.
+                          Nous proposons régulièrement des compétitions officielles et amicales
+                          pour tous les niveaux de jeu.
                         </p>
                       </div>
                     </div>
@@ -77,8 +78,8 @@ const About = () => {
                       <div>
                         <h3 className="font-semibold text-white mb-1">Rassembler les joueurs</h3>
                         <p className="text-white/80">
-                          Créer une communauté active et bienveillante où chacun peut
-                          progresser et s'épanouir.
+                          Créer une communauté active et bienveillante où chacun peut progresser
+                          et s'épanouir.
                         </p>
                       </div>
                     </div>
@@ -90,8 +91,7 @@ const About = () => {
                       <div>
                         <h3 className="font-semibold text-white mb-1">Promouvoir le jeu</h3>
                         <p className="text-white/80">
-                          Faire découvrir les richesses du backgammon au grand public
-                          et encourager sa pratique.
+                          Faire découvrir les richesses du backgammon au grand public et encourager sa pratique.
                         </p>
                       </div>
                     </div>
@@ -101,8 +101,7 @@ const About = () => {
                       <div>
                         <h3 className="font-semibold text-white mb-1">Former et éduquer</h3>
                         <p className="text-white/80">
-                          Transmettre les techniques, règles et stratégies pour
-                          améliorer le niveau général.
+                          Transmettre les techniques, règles et stratégies pour améliorer le niveau général.
                         </p>
                       </div>
                     </div>
