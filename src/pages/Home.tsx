@@ -4,7 +4,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Link } from "react-router-dom";
 import { Trophy, MapPin, Users } from "lucide-react";
 
-/** Révèle en douceur: présent mais atténué, puis net */
+/** Révèle en douceur: lent, fluide et lisible */
 function Reveal({
   children,
   delay = 0,
@@ -29,7 +29,7 @@ function Reveal({
       },
       {
         threshold,
-        // on lance l’anim AVANT que l’élément soit bien au centre
+        // déclenche avant le centre pour un rendu naturel
         rootMargin: "0px 0px -30% 0px",
       }
     );
@@ -43,14 +43,12 @@ function Reveal({
       style={{ transitionDelay: `${delay}s` }}
       className={[
         "transform-gpu will-change-transform",
-        // on transitionne aussi le flou -> impression de “mise au point”
-        "transition-all duration-800 ease-[cubic-bezier(0.22,1,0.36,1)]",
+        "transition-all duration-[1200ms] ease-[cubic-bezier(0.16,1,0.3,1)]",
         "motion-reduce:transition-none",
+        // état initial présent mais atténué
         visible
-          // état final: net, plein, à sa place
           ? "opacity-100 translate-y-0 scale-100 blur-0"
-          // état initial: déjà présent mais atténué (pas invisible)
-          : "opacity-60 translate-y-3 scale-[0.985] blur-[2px]",
+          : "opacity-50 translate-y-8 scale-[0.97] blur-[3px]",
       ].join(" ")}
     >
       {children}
@@ -58,6 +56,45 @@ function Reveal({
   );
 }
 
+/** Révélation spéciale pour le HERO (plus long et cinématographique) */
+function HeroReveal({ children }: { children: React.ReactNode }) {
+  const ref = useRef<HTMLDivElement | null>(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          requestAnimationFrame(() => setVisible(true));
+          obs.disconnect();
+        }
+      },
+      {
+        threshold: 0,
+        // démarre quasi immédiatement en arrivant sur la page
+        rootMargin: "0px 0px -10% 0px",
+      }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+
+  return (
+    <div
+      ref={ref}
+      className={[
+        "transform-gpu will-change-transform",
+        "transition-all duration-[1500ms] ease-[cubic-bezier(0.16,1,0.3,1)]",
+        "motion-reduce:transition-none",
+        visible ? "opacity-100 translate-y-0 blur-0" : "opacity-0 translate-y-10 blur-[4px]",
+      ].join(" ")}
+    >
+      {children}
+    </div>
+  );
+}
 
 const Home = () => {
   // style commun pour les deux CTA
@@ -85,7 +122,8 @@ const Home = () => {
         <div className="absolute inset-0 z-10 bg-gradient-to-r from-black/85 via-black/60 to-black/20" />
 
         <div className="relative z-20 container mx-auto px-4">
-          <Reveal>
+          {/* MODIF 2: HeroReveal appliqué au texte du HERO */}
+          <HeroReveal>
             <div className="max-w-xl">
               <h1 className="font-display text-[36px] leading-tight sm:text-[44px] lg:text-[56px] text-[#E8DDC8] mb-4">
                 Association Genevoise de Backgammon
@@ -104,7 +142,7 @@ const Home = () => {
                 <Link to="/events" className={cta}>Prochains événements</Link>
               </div>
             </div>
-          </Reveal>
+          </HeroReveal>
         </div>
       </section>
 
@@ -134,7 +172,7 @@ const Home = () => {
             </Reveal>
 
             {/* Carte 2 */}
-            <Reveal delay={0.12}>
+            <Reveal delay={0.15}>
               <Card className="group rounded-2xl bg-white/5 ring-1 ring-white/10 shadow-lg backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:bg-white/10 hover:ring-white/20">
                 <CardContent className="p-10 text-center">
                   <div className="mx-auto mb-5 grid h-14 w-14 place-items-center rounded-full bg-red-600/20 transition-colors group-hover:bg-red-600/30">
@@ -150,7 +188,7 @@ const Home = () => {
             </Reveal>
 
             {/* Carte 3 */}
-            <Reveal delay={0.24}>
+            <Reveal delay={0.3}>
               <Card className="group rounded-2xl bg-white/5 ring-1 ring-white/10 shadow-lg backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:bg-white/10 hover:ring-white/20">
                 <CardContent className="p-10 text-center">
                   <div className="mx-auto mb-5 grid h-14 w-14 place-items-center rounded-full bg-red-600/20 transition-colors group-hover:bg-red-600/30">
