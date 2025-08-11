@@ -40,9 +40,9 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
       {/* NAVBAR */}
 <header
   className={`fixed top-0 inset-x-0 z-50 transition-colors duration-300 ${
-    location.pathname === "/"
-      ? "bg-gradient-to-b from-black/60 via-black/20 to-transparent backdrop-blur-sm border-none"
-      : "bg-black/80 backdrop-blur-md border-none"
+    isTransparent
+      ? "bg-gradient-to-b from-black/60 via-black/20 to-transparent backdrop-blur-sm"
+      : "bg-black/70 backdrop-blur-md"
   }`}
 >
         <div className="container mx-auto px-4">
