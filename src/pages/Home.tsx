@@ -29,8 +29,7 @@ function Reveal({
       },
       {
         threshold,
-        // déclenche avant le centre pour un rendu naturel
-        rootMargin: "0px 0px -30% 0px",
+        rootMargin: "0px 0px -30% 0px", // déclenche avant le centre
       }
     );
     obs.observe(el);
@@ -73,8 +72,7 @@ function HeroReveal({ children }: { children: React.ReactNode }) {
       },
       {
         threshold: 0,
-        // démarre quasi immédiatement en arrivant sur la page
-        rootMargin: "0px 0px -10% 0px",
+        rootMargin: "0px 0px -10% 0px", // démarre quasi immédiatement
       }
     );
     obs.observe(el);
@@ -103,9 +101,22 @@ const Home = () => {
     "bg-white/0 hover:bg-white hover:text-black transition shadow-sm backdrop-blur-sm";
 
   return (
-    <div className="page-transition font-serif">
+    <div
+      className={[
+        // FOND GLOBAL near-black en dégradé (plus premium que #000)
+        "min-h-screen bg-gradient-to-br from-[#0b0b0d] to-[#121214] text-white",
+        "relative overflow-x-clip page-transition font-serif",
+      ].join(" ")}
+    >
+      {/* GRAIN GLOBAL (optionnel): ajoute /noise.png dans public/ pour l'activer */}
+      <div className="pointer-events-none absolute inset-0 z-[1] opacity-[0.07] mix-blend-overlay"
+           style={{ backgroundImage: "url('/noise.png')", backgroundSize: "auto" }} />
+
+      {/* Vignette radiale subtile pour casser le plat */}
+      <div className="pointer-events-none absolute inset-0 z-[1] bg-[radial-gradient(80%_60%_at_50%_20%,rgba(255,255,255,0.05),rgba(0,0,0,0))]" />
+
       {/* HERO — vidéo plein écran directement sous la navbar */}
-      <section className="relative min-h-screen flex items-center overflow-hidden bg-black text-white">
+      <section className="relative min-h-[92vh] flex items-center overflow-hidden">
         <video
           autoPlay
           loop
@@ -118,11 +129,15 @@ const Home = () => {
           <source src="/background.mp4" type="video/mp4" />
         </video>
 
-        {/* overlay sombre côté gauche */}
-        <div className="absolute inset-0 z-10 bg-gradient-to-r from-black/85 via-black/60 to-black/20" />
+        {/* OVERLAY CINÉMA — variante CHAUDE */}
+        <div className="absolute inset-0 z-10 bg-gradient-to-r from-[#0b0a09]/90 via-[#1a120f]/70 to-transparent" />
+
+        {/*
+          ➜ Variante FROIDE (remplace la div ci-dessus par celle-ci):
+          <div className="absolute inset-0 z-10 bg-gradient-to-r from-[#0a0c0e]/90 via-[#101820]/70 to-transparent" />
+        */}
 
         <div className="relative z-20 container mx-auto px-4">
-          {/* MODIF 2: HeroReveal appliqué au texte du HERO */}
           <HeroReveal>
             <div className="max-w-xl">
               <h1 className="font-display text-[36px] leading-tight sm:text-[44px] lg:text-[56px] text-[#E8DDC8] mb-4">
@@ -146,10 +161,9 @@ const Home = () => {
         </div>
       </section>
 
-      {/* SECTION FAITS CLÉS – style premium + reveal au scroll */}
+      {/* SECTION FAITS CLÉS – fond anthracite + dégradé radial + lignes subtiles */}
       <section className="relative py-24">
-        {/* fond subtil (dégradé radial + fine bordure haut/bas) */}
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(60%_60%_at_50%_0%,rgba(255,255,255,0.06),rgba(0,0,0,0))]" />
+        <div className="absolute inset-0 bg-[radial-gradient(60%_60%_at_50%_0%,rgba(255,255,255,0.05),rgba(0,0,0,0))]" />
         <div className="absolute inset-x-0 top-0 h-px bg-white/10" />
         <div className="absolute inset-x-0 bottom-0 h-px bg-white/10" />
 
