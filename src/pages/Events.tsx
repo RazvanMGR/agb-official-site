@@ -1,10 +1,9 @@
 import { Card } from "@/components/ui/card";
-import { Calendar } from "lucide-react";
 
 const Events = () => {
   return (
     <div className="relative min-h-screen page-transition">
-      {/* Image de fond */}
+      {/* Image de fond — identique à About */}
       <img
         src="/table.png"
         alt=""
@@ -13,49 +12,76 @@ const Events = () => {
         className="absolute inset-0 z-0 w-full h-full object-cover object-center blur-sm brightness-[.82] saturate-75"
       />
 
-      {/* Voile sombre */}
+      {/* Voile sombre — identique à About */}
       <div className="absolute inset-0 z-10 bg-black/45" />
 
-      {/* Contenu */}
+      {/* Contenu — identique à About (pt/pb, container, max-w) */}
       <div className="relative z-20 container mx-auto px-4 pt-32 pb-32">
         <div className="max-w-4xl mx-auto">
           <Card className="rounded-2xl bg-black/50 backdrop-blur-sm border border-white/10">
-            <div className="p-8 md:p-10 text-center">
-              <Calendar className="mx-auto w-10 h-10 text-accent mb-4" />
-              <h1 className="text-4xl lg:text-5xl font-bold text-white drop-shadow-md mb-4">
-                Prochains tournois
-              </h1>
-              <p className="text-lg md:text-xl text-white/90 mb-6">
-                Restez informés de nos événements et compétitions
-              </p>
-              <p className="text-white/85 mb-4">
-                Les informations concernant les prochains événements seront affichées ici prochainement.
-              </p>
-              <p className="text-xs text-gray-400">
-                Le comité ajoutera les informations nécessaires dans cette section. Structure en cours de mise en place.
-              </p>
+            <div className="p-8 md:p-10">
+              {/* Header — mêmes tailles/marges que About */}
+              <header className="text-center mb-8">
+                <h1 className="text-4xl lg:text-5xl font-bold text-white drop-shadow-md mb-4">
+                  Prochains tournois
+                </h1>
+                <p className="text-lg md:text-xl text-white/90 mb-6">
+                  Restez informés de nos événements et compétitions
+                </p>
+              </header>
+
+              {/* Corps — contenu équivalent */}
+              <section className="prose prose-invert prose-lg max-w-none">
+                <p className="text-white/90 leading-relaxed mb-4">
+                  Les informations concernant les prochains événements seront affichées ici
+                  prochainement.
+                </p>
+                <p className="text-white/80 leading-relaxed">
+                  Le comité ajoutera les informations nécessaires dans cette section.
+                  Structure en cours de mise en place.
+                </p>
+              </section>
+
+              <hr className="my-8 border-white/10" />
+
+              {/* Deux colonnes comme les sections de About */}
+              <section>
+                <h2 className="text-2xl font-semibold text-white drop-shadow-md mb-5">
+                  Informations générales
+                </h2>
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div className="space-y-4">
+                    <div>
+                      <h3 className="font-semibold text-white mb-1">Types de tournois</h3>
+                      <p className="text-white/85">
+                        Officiels, amicales, et inter‑clubs selon le calendrier de l’association.
+                      </p>
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-white mb-1">Niveaux</h3>
+                      <p className="text-white/85">
+                        Tous niveaux sont les bienvenus, du débutant au joueur confirmé.
+                      </p>
+                    </div>
+                  </div>
+                  <div className="space-y-4">
+                    <div>
+                      <h3 className="font-semibold text-white mb-1">Inscription</h3>
+                      <p className="text-white/85">
+                        Une inscription préalable est généralement requise. Détails à venir.
+                      </p>
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-white mb-1">Matériel</h3>
+                      <p className="text-white/85">
+                        Le matériel peut être fourni sur place selon les événements.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </section>
             </div>
           </Card>
-
-          {/* Infos */}
-          <div className="grid md:grid-cols-2 gap-6 mt-10">
-            <Card className="rounded-xl bg-black/50 backdrop-blur-sm border border-white/10 p-6">
-              <h3 className="font-semibold text-white mb-3">Types de tournois</h3>
-              <ul className="list-disc list-inside text-white/85 space-y-1 text-sm">
-                <li>Tournois officiels</li>
-                <li>Compétitions amicales</li>
-                <li>Événements inter-clubs</li>
-              </ul>
-            </Card>
-            <Card className="rounded-xl bg-black/50 backdrop-blur-sm border border-white/10 p-6">
-              <h3 className="font-semibold text-white mb-3">Informations pratiques</h3>
-              <ul className="list-disc list-inside text-white/85 space-y-1 text-sm">
-                <li>Inscription préalable requise</li>
-                <li>Tous niveaux acceptés</li>
-                <li>Matériel fourni</li>
-              </ul>
-            </Card>
-          </div>
         </div>
       </div>
     </div>
