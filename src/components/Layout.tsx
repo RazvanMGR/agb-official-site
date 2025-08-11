@@ -29,11 +29,11 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
     <div className="min-h-screen bg-background flex flex-col">
       {/* NAVBAR */}
-  <header
+ <header
   className={`fixed top-0 inset-x-0 z-50 transition-colors duration-300 ${
-    scrolled
-      ? "bg-black/55 backdrop-blur-md border-b border-white/10"
-      : "bg-black/30 backdrop-blur-sm"
+    !scrolled
+      ? "bg-black border-b border-white/10"
+      : "bg-black/55 backdrop-blur-md border-b border-white/10"
   }`}
 >
         <div className="container mx-auto px-4">
