@@ -1,19 +1,22 @@
-// src/components/Layout.tsx
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
+  const [isTransparent, setIsTransparent] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
-    onScroll();
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
+    const handleScroll = () => {
+      const heroHeight = window.innerHeight * 0.7; // hauteur de déclenchement
+      setIsTransparent(window.scrollY > 0 && window.scrollY < heroHeight);
+    };
+
+    handleScroll();
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const navigation = [
@@ -27,24 +30,24 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   const isActive = (href: string) => location.pathname === href;
 
   return (
-    <div className="min-h-screen bg-background flex flex-col">
+    <div className="min-h-screen flex flex-col bg-black text-white">
       {/* NAVBAR */}
- <header
-  className={`fixed top-0 inset-x-0 z-50 transition-colors duration-300 ${
-    !scrolled
-      ? "bg-black border-b border-white/10"
-      : "bg-black/55 backdrop-blur-md border-b border-white/10"
-  }`}
->
+      <header
+        className={`fixed top-0 inset-x-0 z-50 transition-colors duration-300 ${
+          isTransparent
+            ? "bg-black/55 backdrop-blur-md border-b border-white/10"
+            : "bg-black border-b border-white/10"
+        }`}
+      >
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-24 md:h-28">
             <Link to="/" className="flex items-center gap-3 text-xl font-bold text-white">
               <div className="flex items-center justify-center">
-              <img
+                <img
                   src="/logoAGB.png"
                   alt="Logo AGB"
-                  className="h-16 w-16 md:h-20 md:w-20 object-contain"
-              />
+                  className="h-14 w-14 md:h-16 md:w-16 object-contain"
+                />
               </div>
               <span className="hidden sm:inline font-lora text-lg md:text-2xl lg:text-3xl">
                 Association Genevoise de Backgammon
@@ -101,20 +104,18 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
       </header>
 
       {/* CONTENT */}
-      <main className="flex-1 pt-24 md:pt-28">{children}</main>
+      <main className="flex-1">{children}</main>
 
-      {/* FOOTER amélioré */}
+      {/* FOOTER */}
       <footer className="bg-black border-t border-white/10 text-white">
         <div className="container mx-auto px-4 py-10">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
-            {/* Colonne 1 */}
             <div>
               <h3 className="font-lora text-lg font-semibold mb-3">Association Genevoise de Backgammon</h3>
               <p className="text-sm text-gray-400">
                 Le backgammon à Genève depuis 2005. Rejoignez-nous pour des tournois, ateliers et rencontres conviviales.
               </p>
             </div>
-            {/* Colonne 2 */}
             <div>
               <h4 className="font-semibold mb-3">Liens rapides</h4>
               <ul className="space-y-2 text-sm">
@@ -127,7 +128,6 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
                 ))}
               </ul>
             </div>
-            {/* Colonne 3 */}
             <div>
               <h4 className="font-semibold mb-3">Contact</h4>
               <p className="text-sm text-gray-400">contact@backgammon-geneve.ch</p>
@@ -140,7 +140,6 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
               </Link>
             </div>
           </div>
-
           <div className="border-t border-white/10 mt-8 pt-4 text-center text-xs text-gray-500">
             © 2024 Association Genevoise de Backgammon. Tous droits réservés.
           </div>
