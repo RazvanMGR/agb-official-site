@@ -38,10 +38,10 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
     <div className="min-h-screen flex flex-col bg-black text-white">
       {/* NAVBAR */}
-   <header
+ <header
   className={`fixed top-0 inset-x-0 z-50 transition-colors duration-300 ${
     location.pathname === "/"
-      ? "bg-transparent shadow-[0_2px_20px_rgba(0,0,0,0.4)] backdrop-blur-sm"
+      ? "bg-gradient-to-b from-black/40 via-black/20 to-transparent backdrop-blur-sm"
       : "bg-black/80 backdrop-blur-md border-b border-white/10"
   }`}
 >
