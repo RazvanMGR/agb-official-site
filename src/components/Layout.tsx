@@ -1,37 +1,12 @@
 // src/components/Layout.tsx
-import { useState, useEffect, useCallback } from "react";
+import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isTransparent, setIsTransparent] = useState(true);
   const location = useLocation();
-  const isHome = location.pathname === "/";
-
-  const recompute = useCallback(() => {
-    const navHeight = 88;
-    const heroEl = document.getElementById("hero-title");
-
-    if (heroEl) {
-      const titleTop = heroEl.getBoundingClientRect().top + window.scrollY;
-      setIsTransparent(window.scrollY + navHeight < titleTop);
-    } else {
-      setIsTransparent(window.scrollY < 50); // Transparence si tout en haut
-    }
-  }, []);
-
-  useEffect(() => {
-    recompute();
-    window.addEventListener("scroll", recompute, { passive: true });
-    window.addEventListener("resize", recompute);
-    return () => {
-      window.removeEventListener("scroll", recompute);
-      window.removeEventListener("resize", recompute);
-    };
-  }, [recompute, location.pathname]);
-
   const navigation = [
     { name: "Accueil", href: "/" },
     { name: "À propos", href: "/about" },
@@ -46,12 +21,8 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
     <div className="min-h-screen flex flex-col bg-black text-white">
       {/* NAVBAR */}
       <header
-        className={[
-          "fixed top-0 inset-x-0 z-50 transition-colors duration-300",
-          isTransparent
-            ? "bg-gradient-to-b from-black/60 via-black/20 to-transparent backdrop-blur-sm"
-            : "bg-black/85 backdrop-blur-md",
-        ].join(" ")}
+        className="fixed top-0 inset-x-0 z-50 transition-colors duration-300
+                   bg-gradient-to-b from-black/60 via-black/20 to-transparent backdrop-blur-sm"
       >
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-20 md:h-24">
@@ -101,10 +72,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
           {/* Mobile Navigation */}
           {isMenuOpen && (
             <nav
-              className={[
-                "md:hidden pb-4 space-y-2 rounded-b-xl",
-                isTransparent ? "bg-black/80 backdrop-blur-md px-4 pt-2" : "bg-black/95 px-4 pt-2",
-              ].join(" ")}
+              className="md:hidden pb-4 space-y-2 rounded-b-xl bg-black/80 backdrop-blur-md px-4 pt-2"
             >
               {navigation.map((item) => (
                 <Link
@@ -125,7 +93,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
       </header>
 
       {/* CONTENT */}
-      <main className={isHome ? "" : "pt-24 md:pt-28 flex-1"}>{children}</main>
+      <main className="pt-24 md:pt-28 flex-1">{children}</main>
 
       {/* FOOTER */}
       <footer className="bg-black border-t border-white/10 text-white">
@@ -165,7 +133,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
             </div>
           </div>
           <div className="border-t border-white/10 mt-8 pt-4 text-center text-xs text-gray-500">
-            © 2024 Association Genevoise de Backgammon. Tous droits réservés.
+            © 2025 Association Genevoise de Backgammon. Tous droits réservés.
           </div>
         </div>
       </footer>
