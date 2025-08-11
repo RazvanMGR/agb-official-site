@@ -38,16 +38,13 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
     <div className="min-h-screen flex flex-col bg-black text-white">
       {/* NAVBAR */}
-      <header
-        className={[
-          "fixed top-0 inset-x-0 z-50 transition-colors duration-300",
-          isHome && isTransparent
-            ? // home + top de page -> totalement transparente
-              "bg-transparent"
-            : // sinon -> fond sombre lisible
-              "bg-black/80 backdrop-blur-md border-b border-white/10",
-        ].join(" ")}
-      >
+   <header
+  className={`fixed top-0 inset-x-0 z-50 transition-colors duration-300 ${
+    location.pathname === "/"
+      ? "bg-transparent shadow-[0_2px_20px_rgba(0,0,0,0.4)] backdrop-blur-sm"
+      : "bg-black/80 backdrop-blur-md border-b border-white/10"
+  }`}
+>
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-20 md:h-24">
             <Link to="/" className="flex items-center gap-3 text-xl font-bold text-white">
