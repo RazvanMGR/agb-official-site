@@ -4,38 +4,29 @@ import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-const NAV_H = 88; // ~ h-20 md:h-24
-
 const Layout = ({ children }: { children: React.ReactNode }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isTransparent, setIsTransparent] = useState(true);
   const location = useLocation();
+  const isHome = location.pathname === "/";
 
-  // Navbar transparente en haut partout.
-  // Sur la Home: se base sur #hero-title (ou [data-hero]).
-  // Ailleurs: transparente tant qu'on n'a pas scrollé ~50px.
   const recompute = useCallback(() => {
-    const heroEl =
-      (document.getElementById("hero-title") as HTMLElement | null) ||
-      (document.querySelector("[data-hero]") as HTMLElement | null);
+    const navHeight = 88;
+    const heroEl = document.getElementById("hero-title");
 
-    const triggerY = heroEl
-      ? heroEl.getBoundingClientRect().top + window.scrollY - NAV_H
-      : 50;
-
-    setIsTransparent(window.scrollY < Math.max(0, triggerY));
+    if (heroEl) {
+      const titleTop = heroEl.getBoundingClientRect().top + window.scrollY;
+      setIsTransparent(window.scrollY + navHeight < titleTop);
+    } else {
+      setIsTransparent(window.scrollY < 50); // Transparence si tout en haut
+    }
   }, []);
 
   useEffect(() => {
-    // transparent au mount, puis calcule après paint
-    setIsTransparent(true);
-    const id = window.setTimeout(recompute, 0);
-
+    recompute();
     window.addEventListener("scroll", recompute, { passive: true });
     window.addEventListener("resize", recompute);
-
     return () => {
-      window.clearTimeout(id);
       window.removeEventListener("scroll", recompute);
       window.removeEventListener("resize", recompute);
     };
@@ -76,7 +67,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
               <span className="sm:hidden font-lora text-xl tracking-[0.05em]">GB</span>
             </Link>
 
-            {/* Desktop nav */}
+            {/* Desktop Navigation */}
             <nav className="hidden md:flex items-center gap-8">
               {navigation.map((item) => (
                 <Link
@@ -107,12 +98,12 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
             </Button>
           </div>
 
-          {/* Mobile nav */}
+          {/* Mobile Navigation */}
           {isMenuOpen && (
             <nav
               className={[
                 "md:hidden pb-4 space-y-2 rounded-b-xl",
-                isTransparent ? "bg-black/80 backdrop-blur-md px-4 pt-2" : "",
+                isTransparent ? "bg-black/80 backdrop-blur-md px-4 pt-2" : "bg-black/95 px-4 pt-2",
               ].join(" ")}
             >
               {navigation.map((item) => (
@@ -133,10 +124,10 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
         </div>
       </header>
 
-      {/* CONTENT — réserve la place de la navbar */}
-      <main className="pt-24 md:pt-28 flex-1">{children}</main>
+      {/* CONTENT */}
+      <main className={isHome ? "" : "pt-24 md:pt-28 flex-1"}>{children}</main>
 
-      {/* FOOTER (partout) */}
+      {/* FOOTER */}
       <footer className="bg-black border-t border-white/10 text-white">
         <div className="container mx-auto px-4 py-10">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
