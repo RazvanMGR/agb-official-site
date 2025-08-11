@@ -1,5 +1,7 @@
+// src/pages/Home.tsx
 import { Card, CardContent } from "@/components/ui/card";
 import { Link } from "react-router-dom";
+import { Trophy, MapPin, Users } from "lucide-react";
 
 const Home = () => {
   const cta =
@@ -46,34 +48,53 @@ const Home = () => {
         </div>
       </section>
 
-      {/* SECTION INFOS */}
-      <section className="py-20 bg-black text-white">
-        <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-3 gap-8">
-            <Card className="bg-white/5 border border-white/10 shadow-none backdrop-blur-sm">
+      {/* SECTION FAITS CLÉS – style premium */}
+      <section className="relative py-24">
+        {/* fond subtil (dégradé radial + fine bordure haut/bas) */}
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(60%_60%_at_50%_0%,rgba(255,255,255,0.06),rgba(0,0,0,0))]" />
+        <div className="absolute inset-x-0 top-0 h-px bg-white/10" />
+        <div className="absolute inset-x-0 bottom-0 h-px bg-white/10" />
+
+        <div className="relative container mx-auto px-4">
+          <div className="grid gap-8 md:grid-cols-3">
+            {/* Carte 1 */}
+            <Card className="group rounded-2xl bg-white/5 ring-1 ring-white/10 shadow-none backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:bg-white/10 hover:ring-white/20">
               <CardContent className="p-8 text-center">
-                <div className="text-3xl font-bold text-red-500 mb-2">2005</div>
-                <h3 className="text-lg font-semibold mb-2">Fondation</h3>
-                <p className="text-white/70">
-                  Près de 20 ans d'histoire et de passion pour le backgammon
+                <div className="mx-auto mb-4 grid h-12 w-12 place-items-center rounded-full bg-red-600/20 transition-colors group-hover:bg-red-600/30">
+                  <Trophy className="h-6 w-6 text-red-500" />
+                </div>
+                <div className="text-3xl font-bold text-red-500 mb-1">2005</div>
+                <p className="font-semibold text-white/90 mb-2">Fondation</p>
+                <p className="text-white/70 leading-relaxed">
+                  Près de 20 ans d'histoire et de passion pour le backgammon.
                 </p>
               </CardContent>
             </Card>
-            <Card className="bg-white/5 border border-white/10 shadow-none backdrop-blur-sm">
+
+            {/* Carte 2 */}
+            <Card className="group rounded-2xl bg-white/5 ring-1 ring-white/10 shadow-none backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:bg-white/10 hover:ring-white/20">
               <CardContent className="p-8 text-center">
-                <div className="text-3xl font-bold text-red-500 mb-2">Genève</div>
-                <h3 className="text-lg font-semibold mb-2">Localisation</h3>
-                <p className="text-white/70">
-                  Au cœur de la Suisse romande, rayonnement régional
+                <div className="mx-auto mb-4 grid h-12 w-12 place-items-center rounded-full bg-red-600/20 transition-colors group-hover:bg-red-600/30">
+                  <MapPin className="h-6 w-6 text-red-500" />
+                </div>
+                <div className="text-3xl font-bold text-red-500 mb-1">Genève</div>
+                <p className="font-semibold text-white/90 mb-2">Localisation</p>
+                <p className="text-white/70 leading-relaxed">
+                  Au cœur de la Suisse romande, rayonnement régional.
                 </p>
               </CardContent>
             </Card>
-            <Card className="bg-white/5 border border-white/10 shadow-none backdrop-blur-sm">
+
+            {/* Carte 3 */}
+            <Card className="group rounded-2xl bg-white/5 ring-1 ring-white/10 shadow-none backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:bg-white/10 hover:ring-white/20">
               <CardContent className="p-8 text-center">
-                <div className="text-3xl font-bold text-red-500 mb-2">Tous</div>
-                <h3 className="text-lg font-semibold mb-2">Niveaux</h3>
-                <p className="text-white/70">
-                  Débutants et experts réunis par la passion du jeu
+                <div className="mx-auto mb-4 grid h-12 w-12 place-items-center rounded-full bg-red-600/20 transition-colors group-hover:bg-red-600/30">
+                  <Users className="h-6 w-6 text-red-500" />
+                </div>
+                <div className="text-3xl font-bold text-red-500 mb-1">Tous</div>
+                <p className="font-semibold text-white/90 mb-2">Niveaux</p>
+                <p className="text-white/70 leading-relaxed">
+                  Débutants et experts réunis par la passion du jeu.
                 </p>
               </CardContent>
             </Card>
