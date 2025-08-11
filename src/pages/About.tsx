@@ -10,7 +10,7 @@ const About = () => {
         alt=""
         aria-hidden
         draggable="false"
-        className="absolute inset-0 z-0 w-full h-full object-cover object-center blur-sm brightness-[.82] saturate-75 [object-position:0_20%]"
+        className="absolute inset-0 z-0 w-full h-full object-cover object-center blur-sm brightness-[.82] saturate-75"
       />
 
       {/* Voile sombre */}
