@@ -50,16 +50,16 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
     <div className="min-h-screen flex flex-col bg-black text-white">
       {/* NAVBAR */}
-      <header
-        className={[
-          "fixed top-0 inset-x-0 z-50 transition-colors duration-300",
-          isHome && isTransparent
-            ? // en haut de la home → fondu invisible en bas
-              "bg-gradient-to-b from-black/60 via-black/20 to-transparent backdrop-blur-sm"
-            : // après le titre ou pages internes → fond lisible
-              "bg-black/70 backdrop-blur-md",
-        ].join(" ")}
-      >
+    <header
+  className={[
+    "fixed top-0 inset-x-0 z-50 transition-colors duration-300",
+    isHome && isTransparent
+      ? // en haut de la home → fondu invisible
+        "bg-gradient-to-b from-black/60 via-black/20 to-transparent backdrop-blur-sm"
+      : // après le titre ou pages internes → fond plus foncé
+        "bg-black/85 backdrop-blur-md",
+  ].join(" ")}
+>
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-20 md:h-24">
             <Link to="/" className="flex items-center gap-3 text-xl font-bold text-white">
@@ -69,10 +69,12 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
                 className="h-12 w-12 md:h-14 md:w-14 object-contain"
               />
               {/* Titre compact : 'G B' */}
-              <span className="hidden sm:inline font-lora text-2xl md:text-3xl tracking-[0.18em]">
-                G&nbsp;B
+             <span className="hidden sm:inline font-lora text-2xl md:text-3xl tracking-[0.05em]">
+                GB
               </span>
-              <span className="sm:hidden font-lora text-xl tracking-[0.18em]">G&nbsp;B</span>
+              <span className="sm:hidden font-lora text-xl tracking-[0.05em]">
+                GB
+              </span>
             </Link>
 
             {/* Desktop Navigation */}
