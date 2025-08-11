@@ -43,9 +43,6 @@ const Home = () => {
     "inline-flex items-center justify-center h-11 px-6 rounded-md border border-white/80 text-white/95 " +
     "bg-white/0 hover:bg-white hover:text-black transition shadow-sm backdrop-blur-sm";
 
-  // ⚠️ Mets exactement la couleur du footer ici si elle diffère.
-  const footerBg = "#0b0b0d";
-
   return (
     <div
       className={[
@@ -53,40 +50,31 @@ const Home = () => {
         "relative overflow-x-clip page-transition font-serif",
       ].join(" ")}
     >
-      {/* (optionnel) grain si /noise.png existe */}
+      {/* Grain optionnel */}
       <div
         className="pointer-events-none absolute inset-0 z-[1] opacity-[0.07] mix-blend-overlay"
         style={{ backgroundImage: "url('/noise.png')", backgroundSize: "auto" }}
       />
       <div className="pointer-events-none absolute inset-0 z-[1] bg-[radial-gradient(80%_60%_at_50%_20%,rgba(255,255,255,0.05),rgba(0,0,0,0))]" />
 
-      {/* HERO — vidéo full screen */}
+      {/* HERO avec coins arrondis en bas */}
       <section className="relative min-h-screen flex items-center overflow-hidden">
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          preload="metadata"
-          aria-hidden="true"
-          className="absolute inset-0 w-full h-full object-cover z-0"
-        >
-          <source src="/background.mp4" type="video/mp4" />
-        </video>
+        <div className="absolute inset-0 overflow-hidden rounded-b-[2rem]">
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="metadata"
+            aria-hidden="true"
+            className="absolute inset-0 w-full h-full object-cover"
+          >
+            <source src="/background.mp4" type="video/mp4" />
+          </video>
 
-        {/* Overlay cinéma neutre */}
-        <div className="absolute inset-0 z-10 bg-gradient-to-r from-black/80 via-black/60 to-transparent" />
-
-        {/* Peinture du fond du footer + masque vers le haut (aucune ligne de séparation) */}
-        <div
-          className="absolute inset-0 z-10 pointer-events-none"
-          style={{
-            backgroundColor: footerBg,
-            // Bande opaque (couleur footer) sur ~12rem en bas, puis fondu doux jusque ~36rem
-            WebkitMaskImage: "linear-gradient(to top, black 0, black 12rem, transparent 36rem)",
-            maskImage: "linear-gradient(to top, black 0, black 12rem, transparent 36rem)",
-          }}
-        />
+          {/* Overlay cinéma neutre avec coins arrondis */}
+          <div className="absolute inset-0 z-10 bg-gradient-to-r from-black/80 via-black/60 to-transparent rounded-b-[2rem]" />
+        </div>
 
         <div className="relative z-20 container mx-auto px-4">
           <HeroReveal>
@@ -111,12 +99,6 @@ const Home = () => {
           </HeroReveal>
         </div>
       </section>
-
-      {/* Bridge anti-démarcation si le Footer suit directement */}
-      <div
-        className="-mt-24 h-24 relative z-10 pointer-events-none bg-gradient-to-t from-[#0b0b0d] to-transparent"
-        style={{ from: footerBg }}
-      />
     </div>
   );
 };
