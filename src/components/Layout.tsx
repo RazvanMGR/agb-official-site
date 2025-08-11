@@ -8,24 +8,19 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isTransparent, setIsTransparent] = useState(true);
   const location = useLocation();
-  const isHome = location.pathname === "/";
 
   const recompute = useCallback(() => {
-    if (!isHome) {
-      setIsTransparent(false);
-      return;
-    }
     const navH = 88; // ~ h-20 md:h-24
     const el = document.getElementById("hero-title");
-    if (!el) {
-      // si pas trouvé (autre page, ou pas encore monté), on garde transparent en haut
-      setIsTransparent(window.scrollY < window.innerHeight * 0.6);
-      return;
+
+    if (el) {
+      const titleTop = el.getBoundingClientRect().top + window.scrollY;
+      setIsTransparent(window.scrollY + navH < titleTop);
+    } else {
+      // Si pas de titre, transparent tant qu'on est tout en haut
+      setIsTransparent(window.scrollY < window.innerHeight * 0.2);
     }
-    const titleTop = el.getBoundingClientRect().top + window.scrollY;
-    // Transparent tant que le scroll n’a pas atteint le titre (moins la hauteur nav)
-    setIsTransparent(window.scrollY + navH < titleTop);
-  }, [isHome]);
+  }, []);
 
   useEffect(() => {
     recompute();
@@ -50,16 +45,16 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
     <div className="min-h-screen flex flex-col bg-black text-white">
       {/* NAVBAR */}
-    <header
-  className={[
-    "fixed top-0 inset-x-0 z-50 transition-colors duration-300",
-    isHome && isTransparent
-      ? // en haut de la home → fondu invisible
-        "bg-gradient-to-b from-black/60 via-black/20 to-transparent backdrop-blur-sm"
-      : // après le titre ou pages internes → fond plus foncé
-        "bg-black/85 backdrop-blur-md",
-  ].join(" ")}
->
+      <header
+        className={[
+          "fixed top-0 inset-x-0 z-50 transition-colors duration-300",
+          isTransparent
+            ? // en haut → fondu invisible
+              "bg-gradient-to-b from-black/60 via-black/20 to-transparent backdrop-blur-sm"
+            : // après scroll → fond plus foncé
+              "bg-black/85 backdrop-blur-md",
+        ].join(" ")}
+      >
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-20 md:h-24">
             <Link to="/" className="flex items-center gap-3 text-xl font-bold text-white">
@@ -68,13 +63,11 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
                 alt="Logo AGB"
                 className="h-12 w-12 md:h-14 md:w-14 object-contain"
               />
-              {/* Titre compact : 'G B' */}
-             <span className="hidden sm:inline font-lora text-2xl md:text-3xl tracking-[0.05em]">
+              {/* Titre compact : 'GB' */}
+              <span className="hidden sm:inline font-lora text-2xl md:text-3xl tracking-[0.05em]">
                 GB
               </span>
-              <span className="sm:hidden font-lora text-xl tracking-[0.05em]">
-                GB
-              </span>
+              <span className="sm:hidden font-lora text-xl tracking-[0.05em]">GB</span>
             </Link>
 
             {/* Desktop Navigation */}
@@ -113,8 +106,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
             <nav
               className={[
                 "md:hidden pb-4 space-y-2 rounded-b-xl",
-                // sur la home en haut, ajoute un fond pour lisibilité par-dessus la vidéo
-                isHome && isTransparent ? "bg-black/80 backdrop-blur-md px-4 pt-2" : "",
+                isTransparent ? "bg-black/80 backdrop-blur-md px-4 pt-2" : "",
               ].join(" ")}
             >
               {navigation.map((item) => (
@@ -136,9 +128,9 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
       </header>
 
       {/* CONTENT */}
-      <main className={isHome ? "" : "pt-24 md:pt-28 flex-1"}>{children}</main>
+      <main className="pt-24 md:pt-28 flex-1">{children}</main>
 
-      {/* FOOTER (inchangé) */}
+      {/* FOOTER */}
       <footer className="bg-black border-t border-white/10 text-white">
         <div className="container mx-auto px-4 py-10">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
