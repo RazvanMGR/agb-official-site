@@ -8,18 +8,15 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isTransparent, setIsTransparent] = useState(true);
   const location = useLocation();
-  const isHome = location.pathname === "/";
 
-  // Même comportement de navbar sur TOUTES les pages
   const recompute = useCallback(() => {
-    const navH = 88; // ~ h-20 md:h-24
+    const navH = 88; 
     const el = document.getElementById("hero-title");
 
     if (el) {
       const titleTop = el.getBoundingClientRect().top + window.scrollY;
       setIsTransparent(window.scrollY + navH < titleTop);
     } else {
-      // Si pas de "hero", on garde transparent tant qu'on est proche du haut
       setIsTransparent(window.scrollY < window.innerHeight * 0.2);
     }
   }, []);
@@ -127,9 +124,9 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
       </header>
 
       {/* CONTENT */}
-      <main className={isHome ? "" : "pt-24 md:pt-28 flex-1"}>{children}</main>
+      <main className="pt-24 md:pt-28 flex-1">{children}</main>
 
-      {/* FOOTER (inchangé) */}
+      {/* FOOTER */}
       <footer className="bg-black border-t border-white/10 text-white">
         <div className="container mx-auto px-4 py-10">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
