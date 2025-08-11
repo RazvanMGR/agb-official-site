@@ -41,7 +41,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
             <Link to="/" className="flex items-center gap-3 text-xl font-bold text-white">
               <div className="flex items-center justify-center">
               <img
-                  src="/LogoAGB.png"
+                  src="/logoAGB.png"
                   alt="Logo AGB"
                   className="h-16 w-16 md:h-20 md:w-20 object-contain"
               />
