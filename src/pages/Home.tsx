@@ -47,45 +47,57 @@ const Home = () => {
         </div>
       </section>
 
-      {/* SECTION INFOS */}
-      <section className="py-20 bg-black text-white">
-        <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-3 gap-8">
-            <Card className="bg-white/5 border border-white/10 shadow-none backdrop-blur-sm animate-fadeInUp">
-              <CardContent className="p-8 text-center">
-                <Trophy className="w-10 h-10 text-red-500 mx-auto mb-4" />
-                <div className="text-3xl font-bold text-red-500 mb-2">2005</div>
-                <h3 className="text-lg font-semibold mb-2">Fondation</h3>
-                <p className="text-white/70">
-                  Près de 20 ans d'histoire et de passion pour le backgammon
-                </p>
-              </CardContent>
-            </Card>
+    {/* SECTION INFOS */}
+<section className="py-20 bg-black text-white">
+  <div className="container mx-auto px-4">
+    <div className="grid md:grid-cols-3 gap-8">
+      
+      {/* Carte 1 */}
+      <Card className="group bg-white/5 border border-red-500/30 hover:border-red-500/60 shadow-lg backdrop-blur-sm rounded-xl transition transform hover:-translate-y-2 hover:shadow-red-500/20">
+        <CardContent className="p-10 text-center">
+          <svg xmlns="http://www.w3.org/2000/svg" className="w-12 h-12 mx-auto text-red-500 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 21h8m-8-4h8m-8-4h8M6 3h12v2H6z" />
+          </svg>
+          <div className="text-4xl font-bold text-red-500 mb-2">2005</div>
+          <h3 className="text-xl font-semibold text-white mb-2">Fondation</h3>
+          <p className="text-gray-300">
+            Près de 20 ans d’histoire et de passion pour le backgammon.
+          </p>
+        </CardContent>
+      </Card>
 
-            <Card className="bg-white/5 border border-white/10 shadow-none backdrop-blur-sm animate-fadeInUp" style={{ animationDelay: "0.2s" }}>
-              <CardContent className="p-8 text-center">
-                <MapPin className="w-10 h-10 text-red-500 mx-auto mb-4" />
-                <div className="text-3xl font-bold text-red-500 mb-2">Genève</div>
-                <h3 className="text-lg font-semibold mb-2">Localisation</h3>
-                <p className="text-white/70">
-                  Au cœur de la Suisse romande, rayonnement régional
-                </p>
-              </CardContent>
-            </Card>
+      {/* Carte 2 */}
+      <Card className="group bg-white/5 border border-red-500/30 hover:border-red-500/60 shadow-lg backdrop-blur-sm rounded-xl transition transform hover:-translate-y-2 hover:shadow-red-500/20">
+        <CardContent className="p-10 text-center">
+          <svg xmlns="http://www.w3.org/2000/svg" className="w-12 h-12 mx-auto text-red-500 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 12.414a4 4 0 10-5.657 5.657l4.243 4.243a8 8 0 111.414-1.414z" />
+          </svg>
+          <div className="text-4xl font-bold text-red-500 mb-2">Genève</div>
+          <h3 className="text-xl font-semibold text-white mb-2">Localisation</h3>
+          <p className="text-gray-300">
+            Au cœur de la Suisse romande, rayonnement régional.
+          </p>
+        </CardContent>
+      </Card>
 
-            <Card className="bg-white/5 border border-white/10 shadow-none backdrop-blur-sm animate-fadeInUp" style={{ animationDelay: "0.4s" }}>
-              <CardContent className="p-8 text-center">
-                <Users className="w-10 h-10 text-red-500 mx-auto mb-4" />
-                <div className="text-3xl font-bold text-red-500 mb-2">Tous</div>
-                <h3 className="text-lg font-semibold mb-2">Niveaux</h3>
-                <p className="text-white/70">
-                  Débutants et experts réunis par la passion du jeu
-                </p>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
+      {/* Carte 3 */}
+      <Card className="group bg-white/5 border border-red-500/30 hover:border-red-500/60 shadow-lg backdrop-blur-sm rounded-xl transition transform hover:-translate-y-2 hover:shadow-red-500/20">
+        <CardContent className="p-10 text-center">
+          <svg xmlns="http://www.w3.org/2000/svg" className="w-12 h-12 mx-auto text-red-500 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5V8H2v12h5m10-8v8m0-8l-5 5m5-5l5 5" />
+          </svg>
+          <div className="text-4xl font-bold text-red-500 mb-2">Tous</div>
+          <h3 className="text-xl font-semibold text-white mb-2">Niveaux</h3>
+          <p className="text-gray-300">
+            Débutants et experts réunis par la passion du jeu.
+          </p>
+        </CardContent>
+      </Card>
+
+    </div>
+  </div>
+</section>
+
     </div>
   );
 };
