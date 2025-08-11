@@ -1,4 +1,3 @@
-// src/pages/About.tsx
 import { Card } from "@/components/ui/card";
 import { Trophy, MapPin, Users } from "lucide-react";
 
@@ -12,13 +11,13 @@ const About = () => {
         aria-hidden
         draggable="false"
         className="absolute inset-0 z-0 w-full h-full object-cover object-center blur-sm brightness-[.82] saturate-75"
-      />  
+      />
 
       {/* Voile sombre */}
       <div className="absolute inset-0 z-10 bg-black/45" />
 
       {/* Contenu */}
-      <div className="relative z-20 container mx-auto px-4 pt-8 pb-32">
+      <div className="relative z-20 container mx-auto px-4 pt-32 pb-32">
         <div className="max-w-4xl mx-auto">
           <Card className="rounded-2xl bg-black/50 backdrop-blur-sm border border-white/10">
             <div className="p-8 md:p-10">
