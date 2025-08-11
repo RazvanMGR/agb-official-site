@@ -29,13 +29,13 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
     <div className="min-h-screen bg-background flex flex-col">
       {/* NAVBAR */}
-    <header
-      className={`fixed top-0 inset-x-0 z-50 transition-colors duration-300 ${
-      scrolled
-        ? "bg-black/55 backdrop-blur-md border-b border-white/10"
-        : "bg-gradient-to-b from-black/70 to-black/0"
-      }`}
-    >
+  <header
+  className={`fixed top-0 inset-x-0 z-50 transition-colors duration-300 ${
+    scrolled
+      ? "bg-black/55 backdrop-blur-md border-b border-white/10"
+      : "bg-black/30 backdrop-blur-sm"
+  }`}
+>
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-24 md:h-28">
             <Link to="/" className="flex items-center gap-3 text-xl font-bold text-white">
