@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const Home = () => {
   return (
-    <div className="page-transition">
+   <div className="page-transition font-serif">
       {/* HERO — vidéo de fond + overlay + texte à gauche (style maquette) */}
       <section className="relative min-h-[90vh] flex items-center overflow-hidden bg-black text-white">
         {/* Vidéo de fond */}
