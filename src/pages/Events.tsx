@@ -3,7 +3,7 @@ import { Card } from "@/components/ui/card";
 const Events = () => {
   return (
     <div className="relative min-h-screen page-transition">
-      {/* Image de fond — identique à About */}
+      {/* Image de fond — EXACTEMENT comme About */}
       <img
         src="/table.png"
         alt=""
@@ -12,15 +12,15 @@ const Events = () => {
         className="absolute inset-0 z-0 w-full h-full object-cover object-center blur-sm brightness-[.82] saturate-75"
       />
 
-      {/* Voile sombre — identique à About */}
+      {/* Voile sombre — EXACTEMENT comme About */}
       <div className="absolute inset-0 z-10 bg-black/45" />
 
-      {/* Contenu — identique à About (pt/pb, container, max-w) */}
+      {/* Contenu — EXACTEMENT mêmes classes que About */}
       <div className="relative z-20 container mx-auto px-4 pt-32 pb-32">
         <div className="max-w-4xl mx-auto">
           <Card className="rounded-2xl bg-black/50 backdrop-blur-sm border border-white/10">
             <div className="p-8 md:p-10">
-              {/* Header — mêmes tailles/marges que About */}
+              {/* Header — mêmes marges/tailles que About */}
               <header className="text-center mb-8">
                 <h1 className="text-4xl lg:text-5xl font-bold text-white drop-shadow-md mb-4">
                   Prochains tournois
@@ -30,13 +30,13 @@ const Events = () => {
                 </p>
               </header>
 
-              {/* Corps — contenu équivalent */}
+              {/* Bloc 1 — même structure de section que About */}
               <section className="prose prose-invert prose-lg max-w-none">
                 <p className="text-white/90 leading-relaxed mb-4">
                   Les informations concernant les prochains événements seront affichées ici
                   prochainement.
                 </p>
-                <p className="text-white/80 leading-relaxed">
+                <p className="text-white/90 leading-relaxed">
                   Le comité ajoutera les informations nécessaires dans cette section.
                   Structure en cours de mise en place.
                 </p>
@@ -44,7 +44,7 @@ const Events = () => {
 
               <hr className="my-8 border-white/10" />
 
-              {/* Deux colonnes comme les sections de About */}
+              {/* Bloc 2 — même grille que About */}
               <section>
                 <h2 className="text-2xl font-semibold text-white drop-shadow-md mb-5">
                   Informations générales
