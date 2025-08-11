@@ -68,7 +68,7 @@ function HeroReveal({ children }: { children: React.ReactNode }) {
       },
       { threshold: 0, rootMargin: "0px 0px -10% 0px" }
     );
-  obs.observe(el);
+    obs.observe(el);
     return () => obs.disconnect();
   }, []);
 
@@ -99,23 +99,23 @@ const Home = () => {
         "relative overflow-x-clip page-transition font-serif",
       ].join(" ")}
     >
-      {/* Grain global (optionnel si /noise.png existe) */}
+      {/* (optionnel) grain si /noise.png existe */}
       <div
         className="pointer-events-none absolute inset-0 z-[1] opacity-[0.07] mix-blend-overlay"
         style={{ backgroundImage: "url('/noise.png')", backgroundSize: "auto" }}
       />
       <div className="pointer-events-none absolute inset-0 z-[1] bg-[radial-gradient(80%_60%_at_50%_20%,rgba(255,255,255,0.05),rgba(0,0,0,0))]" />
 
-      {/* HERO — vidéo full screen avec fondu bas */}
+      {/* HERO — vidéo full screen, désaturée, qui FADE en TRANSPARENT en bas */}
       <section className="relative min-h-screen flex items-center overflow-hidden">
-        {/* Bloc vidéo masqué: fondu plus LONG (55% → 95%) */}
+        {/* Conteneur masqué: dégradé alpha only (no color) */}
         <div
           className="absolute inset-0 z-0"
           style={{
             WebkitMaskImage:
-              "linear-gradient(to bottom, rgba(0,0,0,1) 55%, rgba(0,0,0,0) 95%)",
+              "linear-gradient(to bottom, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 98%)",
             maskImage:
-              "linear-gradient(to bottom, rgba(0,0,0,1) 55%, rgba(0,0,0,0) 95%)",
+              "linear-gradient(to bottom, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 98%)",
           }}
         >
           <video
@@ -126,15 +126,16 @@ const Home = () => {
             preload="metadata"
             aria-hidden="true"
             className="absolute inset-0 w-full h-full object-cover"
+            // désaturation + légère baisse contraste/brightness, pas de teinte
+            style={{
+              filter: "grayscale(0.9) saturate(0.6) contrast(0.9) brightness(0.9)",
+            }}
           >
             <source src="/background.mp4" type="video/mp4" />
           </video>
 
-          {/* Overlay cinéma (chaud). Garde-le sous le fondu bas. */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0b0a09]/90 via-[#1a120f]/70 to-transparent" />
-
-          {/* FONDU de secours vers la couleur de fond (assure la fusion visuelle) */}
-          <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-b from-transparent to-[#121214]" />
+          {/* plus d’overlay coloré ; juste une légère vignette neutre (facultatif) */}
+          <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(120%_80%_at_50%_20%,rgba(0,0,0,0.35),rgba(0,0,0,0))]" />
         </div>
 
         {/* Contenu par-dessus */}
@@ -162,10 +163,9 @@ const Home = () => {
         </div>
       </section>
 
-      {/* SECTION FAITS CLÉS */}
+      {/* SECTION FAITS CLÉS (bordure top retirée pour éviter la ligne) */}
       <section className="relative py-24">
         <div className="absolute inset-0 bg-[radial-gradient(60%_60%_at_50%_0%,rgba(255,255,255,0.05),rgba(0,0,0,0))]" />
-        {/* ⬇️ SUPPRIMÉE: la bordure top créait la ligne visible sous la vidéo */}
         {/* <div className="absolute inset-x-0 top-0 h-px bg-white/10" /> */}
         <div className="absolute inset-x-0 bottom-0 h-px bg-white/10" />
 
