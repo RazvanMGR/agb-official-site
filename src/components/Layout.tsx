@@ -133,7 +133,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
             </div>
           </div>
           <div className="border-t border-white/10 mt-8 pt-4 text-center text-xs text-gray-500">
-            © 2025 Association Genevoise de Backgammon. Tous droits réservés.
+            © 2024 Association Genevoise de Backgammon. Tous droits réservés.
           </div>
         </div>
       </footer>
