@@ -7,6 +7,8 @@ import { Button } from "@/components/ui/button";
 const Layout = ({ children }: { children: React.ReactNode }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
+  const isHome = location.pathname === "/";
+
   const navigation = [
     { name: "Accueil", href: "/" },
     { name: "À propos", href: "/about" },
@@ -19,7 +21,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <div className="min-h-screen flex flex-col bg-black text-white">
-      {/* NAVBAR */}
+      {/* NAVBAR — toujours transparente */}
       <header
         className="fixed top-0 inset-x-0 z-50 transition-colors duration-300
                    bg-gradient-to-b from-black/60 via-black/20 to-transparent backdrop-blur-sm"
@@ -71,9 +73,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
 
           {/* Mobile Navigation */}
           {isMenuOpen && (
-            <nav
-              className="md:hidden pb-4 space-y-2 rounded-b-xl bg-black/80 backdrop-blur-md px-4 pt-2"
-            >
+            <nav className="md:hidden pb-4 space-y-2 rounded-b-xl bg-black/80 backdrop-blur-md px-4 pt-2">
               {navigation.map((item) => (
                 <Link
                   key={item.name}
@@ -92,8 +92,8 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
         </div>
       </header>
 
-      {/* CONTENT */}
-      <main className="pt-24 md:pt-28 flex-1">{children}</main>
+      {/* CONTENT — pas de padding sur la home, padding ailleurs */}
+      <main className={isHome ? "" : "pt-24 md:pt-28 flex-1"}>{children}</main>
 
       {/* FOOTER */}
       <footer className="bg-black border-t border-white/10 text-white">
