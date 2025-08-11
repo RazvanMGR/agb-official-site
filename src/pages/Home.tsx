@@ -1,18 +1,15 @@
-// src/pages/Home.tsx
 import { Card, CardContent } from "@/components/ui/card";
 import { Link } from "react-router-dom";
 
 const Home = () => {
-  // style commun pour les deux CTA
   const cta =
     "inline-flex items-center justify-center h-11 px-6 rounded-md border border-white/80 text-white/95 " +
     "bg-white/0 hover:bg-white hover:text-black transition shadow-sm backdrop-blur-sm";
 
   return (
     <div className="page-transition font-serif">
-      {/* HERO — vidéo de fond + overlay + texte à gauche */}
-      <section className="relative min-h-[90vh] flex items-center overflow-hidden bg-black text-white">
-        {/* Vidéo de fond */}
+      {/* HERO — vidéo plein écran directement sous la navbar */}
+      <section className="relative min-h-screen flex items-center overflow-hidden bg-black text-white">
         <video
           autoPlay
           loop
@@ -25,60 +22,31 @@ const Home = () => {
           <source src="/background.mp4" type="video/mp4" />
         </video>
 
-        {/* Overlay: très sombre à gauche, plus léger à droite */}
         <div className="absolute inset-0 z-10 bg-gradient-to-r from-black/85 via-black/60 to-black/20" />
 
-        {/* Cercles décoratifs à droite (subtils) */}
-        <svg
-          className="pointer-events-none absolute right-[-12%] top-[-12%] z-10 opacity-25 hidden md:block"
-          width="900"
-          height="900"
-          viewBox="0 0 900 900"
-          fill="none"
-        >
-          <circle cx="450" cy="450" r="280" stroke="white" strokeOpacity="0.12" />
-          <circle cx="450" cy="450" r="360" stroke="white" strokeOpacity="0.08" />
-          <circle cx="450" cy="450" r="440" stroke="white" strokeOpacity="0.06" />
-        </svg>
-
-        {/* Contenu */}
         <div className="relative z-20 container mx-auto px-4">
-          <div className="grid lg:grid-cols-2 items-center gap-8">
-            {/* Colonne gauche : texte */}
-            <div className="max-w-xl">
-              <h1 className="font-display text-[36px] leading-tight sm:text-[44px] lg:text-[56px] text-[#E8DDC8] mb-4">
-                Association Genevoise de Backgammon
-              </h1>
-
-              <p className="text-lg lg:text-xl text-red-400 font-medium mb-6">
-                Le backgammon à Genève, depuis 2005.
-              </p>
-
-              <p className="text-base lg:text-lg text-white/80 leading-relaxed mb-8">
-                Depuis près de vingt ans, l’Association Genevoise de Backgammon rassemble les
-                passionnés de ce jeu millénaire dans la région lémanique. Que vous soyez débutant
-                ou joueur expérimenté, notre communauté vous attend pour partager la passion de ce
-                jeu de stratégie.
-              </p>
-
-              {/* CTA identiques */}
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Link to="/about" className={cta}>
-                  Découvrir l'association
-                </Link>
-                <Link to="/events" className={cta}>
-                  Prochains événements
-                </Link>
-              </div>
+          <div className="max-w-xl">
+            <h1 className="font-display text-[36px] leading-tight sm:text-[44px] lg:text-[56px] text-[#E8DDC8] mb-4">
+              Association Genevoise de Backgammon
+            </h1>
+            <p className="text-lg lg:text-xl text-red-400 font-medium mb-6">
+              Le backgammon à Genève, depuis 2005.
+            </p>
+            <p className="text-base lg:text-lg text-white/80 leading-relaxed mb-8">
+              Depuis près de vingt ans, l’Association Genevoise de Backgammon rassemble les
+              passionnés de ce jeu millénaire dans la région lémanique. Que vous soyez débutant
+              ou joueur expérimenté, notre communauté vous attend pour partager la passion de ce
+              jeu de stratégie.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4">
+              <Link to="/about" className={cta}>Découvrir l'association</Link>
+              <Link to="/events" className={cta}>Prochains événements</Link>
             </div>
-
-            {/* Colonne droite vide : laisse respirer la vidéo */}
-            <div className="hidden lg:block" />
           </div>
         </div>
       </section>
 
-      {/* SECTION INFOS (cartes) – harmonisée style sombre */}
+      {/* SECTION INFOS */}
       <section className="py-20 bg-black text-white">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-3 gap-8">
@@ -91,7 +59,6 @@ const Home = () => {
                 </p>
               </CardContent>
             </Card>
-
             <Card className="bg-white/5 border border-white/10 shadow-none backdrop-blur-sm">
               <CardContent className="p-8 text-center">
                 <div className="text-3xl font-bold text-red-500 mb-2">Genève</div>
@@ -101,7 +68,6 @@ const Home = () => {
                 </p>
               </CardContent>
             </Card>
-
             <Card className="bg-white/5 border border-white/10 shadow-none backdrop-blur-sm">
               <CardContent className="p-8 text-center">
                 <div className="text-3xl font-bold text-red-500 mb-2">Tous</div>
