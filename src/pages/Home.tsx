@@ -27,10 +27,7 @@ function Reveal({
           obs.disconnect();
         }
       },
-      {
-        threshold,
-        rootMargin: "0px 0px -30% 0px", // déclenche avant le centre
-      }
+      { threshold, rootMargin: "0px 0px -30% 0px" }
     );
     obs.observe(el);
     return () => obs.disconnect();
@@ -44,7 +41,6 @@ function Reveal({
         "transform-gpu will-change-transform",
         "transition-all duration-[1200ms] ease-[cubic-bezier(0.16,1,0.3,1)]",
         "motion-reduce:transition-none",
-        // état initial présent mais atténué
         visible
           ? "opacity-100 translate-y-0 scale-100 blur-0"
           : "opacity-50 translate-y-8 scale-[0.97] blur-[3px]",
@@ -70,10 +66,7 @@ function HeroReveal({ children }: { children: React.ReactNode }) {
           obs.disconnect();
         }
       },
-      {
-        threshold: 0,
-        rootMargin: "0px 0px -10% 0px", // démarre quasi immédiatement
-      }
+      { threshold: 0, rootMargin: "0px 0px -10% 0px" }
     );
     obs.observe(el);
     return () => obs.disconnect();
@@ -109,34 +102,48 @@ const Home = () => {
       ].join(" ")}
     >
       {/* GRAIN GLOBAL (optionnel): ajoute /noise.png dans public/ pour l'activer */}
-      <div className="pointer-events-none absolute inset-0 z-[1] opacity-[0.07] mix-blend-overlay"
-           style={{ backgroundImage: "url('/noise.png')", backgroundSize: "auto" }} />
+      <div
+        className="pointer-events-none absolute inset-0 z-[1] opacity-[0.07] mix-blend-overlay"
+        style={{ backgroundImage: "url('/noise.png')", backgroundSize: "auto" }}
+      />
 
-      {/* Vignette radiale subtile pour casser le plat */}
+      {/* Vignette radiale subtile */}
       <div className="pointer-events-none absolute inset-0 z-[1] bg-[radial-gradient(80%_60%_at_50%_20%,rgba(255,255,255,0.05),rgba(0,0,0,0))]" />
 
-      {/* HERO — vidéo plein écran directement sous la navbar */}
-      <section className="relative min-h-[92vh] flex items-center overflow-hidden">
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          preload="metadata"
-          aria-hidden="true"
-          className="absolute inset-0 w-full h-full object-cover z-0"
+      {/* HERO — vidéo full screen avec fondu bas */}
+      <section className="relative min-h-screen flex items-center overflow-hidden">
+        {/* CONTENEUR MASQUÉ: la vidéo + overlay “fondent” vers transparent en bas */}
+        <div
+          className="absolute inset-0 z-0"
+          style={{
+            WebkitMaskImage:
+              "linear-gradient(to bottom, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%)",
+            maskImage:
+              "linear-gradient(to bottom, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%)",
+          }}
         >
-          <source src="/background.mp4" type="video/mp4" />
-        </video>
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="metadata"
+            aria-hidden="true"
+            className="absolute inset-0 w-full h-full object-cover"
+          >
+            <source src="/background.mp4" type="video/mp4" />
+          </video>
 
-        {/* OVERLAY CINÉMA — variante CHAUDE */}
-        <div className="absolute inset-0 z-10 bg-gradient-to-r from-[#0b0a09]/90 via-[#1a120f]/70 to-transparent" />
+          {/* OVERLAY CINÉMA — variante CHAUDE */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0b0a09]/90 via-[#1a120f]/70 to-transparent" />
 
-        {/*
-          ➜ Variante FROIDE (remplace la div ci-dessus par celle-ci):
-          <div className="absolute inset-0 z-10 bg-gradient-to-r from-[#0a0c0e]/90 via-[#101820]/70 to-transparent" />
-        */}
+          {/*
+            ➜ Variante FROIDE (remplace la div ci-dessus par celle-ci):
+            <div className="absolute inset-0 bg-gradient-to-r from-[#0a0c0e]/90 via-[#101820]/70 to-transparent" />
+          */}
+        </div>
 
+        {/* CONTENU par-dessus (non masqué) */}
         <div className="relative z-20 container mx-auto px-4">
           <HeroReveal>
             <div className="max-w-xl">
@@ -161,7 +168,7 @@ const Home = () => {
         </div>
       </section>
 
-      {/* SECTION FAITS CLÉS – fond anthracite + dégradé radial + lignes subtiles */}
+      {/* SECTION FAITS CLÉS */}
       <section className="relative py-24">
         <div className="absolute inset-0 bg-[radial-gradient(60%_60%_at_50%_0%,rgba(255,255,255,0.05),rgba(0,0,0,0))]" />
         <div className="absolute inset-x-0 top-0 h-px bg-white/10" />
@@ -169,7 +176,6 @@ const Home = () => {
 
         <div className="relative container mx-auto px-4">
           <div className="grid gap-8 md:grid-cols-3">
-            {/* Carte 1 */}
             <Reveal delay={0.0}>
               <Card className="group rounded-2xl bg-white/5 ring-1 ring-white/10 shadow-lg backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:bg-white/10 hover:ring-white/20">
                 <CardContent className="p-10 text-center">
@@ -185,7 +191,6 @@ const Home = () => {
               </Card>
             </Reveal>
 
-            {/* Carte 2 */}
             <Reveal delay={0.15}>
               <Card className="group rounded-2xl bg-white/5 ring-1 ring-white/10 shadow-lg backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:bg-white/10 hover:ring-white/20">
                 <CardContent className="p-10 text-center">
@@ -201,7 +206,6 @@ const Home = () => {
               </Card>
             </Reveal>
 
-            {/* Carte 3 */}
             <Reveal delay={0.3}>
               <Card className="group rounded-2xl bg-white/5 ring-1 ring-white/10 shadow-lg backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:bg-white/10 hover:ring-white/20">
                 <CardContent className="p-10 text-center">
