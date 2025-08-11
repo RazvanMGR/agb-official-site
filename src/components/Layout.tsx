@@ -40,11 +40,11 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
           <div className="flex items-center justify-between h-24 md:h-28">
             <Link to="/" className="flex items-center gap-3 text-xl font-bold text-white">
               <div className="flex items-center justify-center">
-                <img
-                  src="/8adea49a-2229-46f1-a37f-5d1a17e5f510.png"
+              <img
+                  src="/logoAGB.png"
                   alt="Logo AGB"
                   className="h-14 w-14 md:h-16 md:w-16 object-contain"
-                />
+              />
               </div>
               <span className="hidden sm:inline font-lora text-lg md:text-2xl lg:text-3xl">
                 Association Genevoise de Backgammon
