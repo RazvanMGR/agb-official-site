@@ -1,4 +1,3 @@
-// src/components/Layout.tsx
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
@@ -8,6 +7,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
   const isHome = location.pathname === "/";
+  const isAbout = location.pathname === "/about";
 
   const navigation = [
     { name: "Accueil", href: "/" },
@@ -92,8 +92,10 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
         </div>
       </header>
 
-      {/* CONTENT — pas de padding sur la home, padding ailleurs */}
-      <main className={isHome ? "" : "pt-24 md:pt-28 flex-1"}>{children}</main>
+      {/* CONTENT — pas de padding sur la home et About, padding ailleurs */}
+      <main className={isHome || isAbout ? "flex-1" : "pt-24 md:pt-28 flex-1"}>
+        {children}
+      </main>
 
       {/* FOOTER */}
       <footer className="bg-black border-t border-white/10 text-white">
