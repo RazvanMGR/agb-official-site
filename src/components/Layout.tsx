@@ -21,7 +21,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
     <div className="min-h-screen bg-background">
       <header className="sticky top-0 z-50 border-b border-border bg-card/95 backdrop-blur-sm">
         <div className="container mx-auto px-4">
-          <div className="flex items-center justify-between h-26">
+           <div className="flex items-center justify-between h-32">
             <Link to="/" className="flex items-center gap-3 text-xl font-bold text-primary">
               <div className="w-20 h-20 flex items-center justify-center">
               <img
