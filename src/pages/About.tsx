@@ -4,8 +4,8 @@ import { Card } from "@/components/ui/card";
 const About = () => {
   return (
     <div className="relative min-h-screen page-transition">
-      {/* FOND FIXE sur toute la fenêtre (derrière navbar + main) */}
-      <div className="fixed inset-0 -z-10 pointer-events-none">
+      {/* FOND FIXE (derrière la navbar, sans z négatif) */}
+      <div className="fixed inset-0 z-0 pointer-events-none">
         <img
           src="/table.png"
           alt=""
@@ -16,8 +16,8 @@ const About = () => {
         <div className="absolute inset-0 bg-black/45" />
       </div>
 
-      {/* CONTENU */}
-      <div className="container mx-auto px-4 pt-28 pb-32">
+      {/* CONTENU au-dessus du fond */}
+      <div className="relative z-10 container mx-auto px-4 pt-28 pb-32">
         <div className="max-w-4xl mx-auto">
           <Card className="rounded-2xl bg-black/50 backdrop-blur-sm border border-white/10">
             <div className="p-8 md:p-10">
