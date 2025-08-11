@@ -5,13 +5,13 @@ const Events = () => {
   return (
     <div className="relative min-h-screen page-transition">
       {/* Image de fond */}
-      <img
-         src="/table.png"
+     <img
+  src="/table.png"
   alt=""
   aria-hidden
   draggable="false"
-  className="absolute inset-0 z-0 w-full h-full object-cover object-center blur-sm brightness-[.82] saturate-75"
-      />
+  className="absolute inset-0 z-0 w-full h-full object-cover blur-sm brightness-[.82] saturate-75 [object-position:center_55%]"
+/>
 
       {/* Voile sombre */}
       <div className="absolute inset-0 z-10 bg-black/45" />
