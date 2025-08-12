@@ -4,17 +4,17 @@ import { Calendar } from "lucide-react";
 const Events = () => {
   return (
     <div className="relative min-h-screen page-transition">
-      {/* Image de fond — fixée au viewport, même classes que About */}
+      {/* Image de fond */}
       <img
         src="/table.png"
         alt=""
         aria-hidden
         draggable="false"
-        className="fixed inset-0 -z-10 w-full h-full object-cover object-center blur-sm brightness-[.82] saturate-75 pointer-events-none select-none"
+        className="fixed inset-0 z-0 w-full h-full object-cover object-center blur-sm brightness-[.82] saturate-75 pointer-events-none select-none [object-position:center_40%]"
       />
 
-      {/* Voile sombre — fixé aussi */}
-      <div className="fixed inset-0 -z-10 bg-black/45 pointer-events-none" />
+      {/* Voile sombre */}
+      <div className="fixed inset-0 z-10 bg-black/45 pointer-events-none" />
 
       {/* Contenu */}
       <div className="relative z-20 container mx-auto px-4 pt-32 pb-32">
