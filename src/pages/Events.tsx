@@ -10,7 +10,7 @@ const Events = () => {
         alt=""
         aria-hidden
         draggable="false"
-        className="fixed inset-0 z-0 w-full h-full object-cover object-center blur-sm brightness-[.82] saturate-75 pointer-events-none select-none [object-position:center_70%]"
+        className="fixed inset-0 z-0 w-full h-full object-cover object-center blur-sm brightness-[.82] saturate-75 pointer-events-none select-none [object-position:center_10%]"
       />
 
       {/* Voile sombre */}
