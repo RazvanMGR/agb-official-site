@@ -4,14 +4,17 @@ import { Trophy } from "lucide-react";
 const Results = () => {
   return (
     <div className="relative min-h-screen page-transition">
-      {/* Image de fond */}
+      {/* Image de fond — EXACTEMENT comme Events */}
       <img
         src="/table.png"
         alt=""
         aria-hidden
         draggable="false"
-        className="absolute inset-0 z-0 w-full h-full object-cover blur-sm brightness-[.82] saturate-75"
+        className="absolute inset-0 z-0 w-full h-full object-cover blur-sm brightness-[.82] saturate-75 [object-position:center_17.5%]"
       />
+
+      {/* Voile sombre — EXACTEMENT comme Events */}
+      <div className="fixed inset-0 z-10 bg-black/45 pointer-events-none" />
 
       {/* Contenu */}
       <div className="relative z-20 container mx-auto px-4 pt-32 pb-32">
