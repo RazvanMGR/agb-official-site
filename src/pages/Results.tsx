@@ -10,7 +10,7 @@ const Results = () => {
         alt=""
         aria-hidden
         draggable="false"
-        className="absolute inset-0 z-0 w-full h-full object-cover blur-sm brightness-[.82] saturate-75 [object-position:center_27.5%]"
+        className="absolute inset-0 z-0 w-full h-full object-cover blur-sm brightness-[.82] saturate-75 [object-position:center_57.5%]"
       />
 
       {/* Voile sombre */}
