@@ -1,85 +1,60 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card } from "@/components/ui/card";
 import { Trophy } from "lucide-react";
 
 const Results = () => {
   return (
-    <div className="page-transition py-16">
-      <div className="container mx-auto px-4">
-        <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-12">
-            <h1 className="text-4xl lg:text-5xl font-bold text-primary mb-6">
-              Résultats des tournois
-            </h1>
-            <p className="text-xl text-muted-foreground">
-              Palmarès et classements de nos compétitions
-            </p>
-          </div>
+    <div className="relative min-h-screen page-transition">
+      {/* Image de fond */}
+      <img
+        src="/table.png"
+        alt=""
+        aria-hidden
+        draggable="false"
+        className="absolute inset-0 z-0 w-full h-full object-cover blur-sm brightness-[.82] saturate-75 [object-position:center_17.5%]"
+      />
 
-          <Card className="text-center">
-            <CardHeader className="pb-4">
-              <div className="mx-auto mb-4 w-16 h-16 bg-muted rounded-full flex items-center justify-center">
-                <Trophy className="w-8 h-8 text-muted-foreground" />
-              </div>
-              <CardTitle className="text-2xl text-primary">
-                Palmarès
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-                Les résultats seront affichés prochainement.
+      {/* Voile sombre */}
+      <div className="fixed inset-0 z-10 bg-black/45 pointer-events-none" />
+
+      {/* Contenu */}
+      <div className="relative z-20 container mx-auto px-4 pt-32 pb-32">
+        <div className="max-w-4xl mx-auto">
+          <Card className="rounded-2xl bg-black/50 backdrop-blur-sm border border-white/10">
+            <div className="p-8 md:p-10 text-center">
+              <Trophy className="mx-auto w-10 h-10 text-accent mb-4" />
+              <h1 className="text-4xl lg:text-5xl font-bold text-white drop-shadow-md mb-4">
+                Résultats des tournois
+              </h1>
+              <p className="text-lg md:text-xl text-white/90 mb-6">
+                Palmarès et classements de nos compétitions
               </p>
-              <div className="bg-muted/30 p-6 rounded-lg">
-                <p className="text-sm text-muted-foreground">
-                  Le comité ajoutera les informations nécessaires dans cette section. 
-                  Structure en cours de mise en place.
-                </p>
-              </div>
-            </CardContent>
+              <p className="text-white/85 mb-4">
+                Les résultats officiels seront publiés ici après validation par le comité.
+              </p>
+              <p className="text-xs text-gray-400">
+                Le comité ajoutera les tableaux et classements dans cette section. Structure en cours de mise en place.
+              </p>
+            </div>
           </Card>
 
-          <div className="mt-12 grid md:grid-cols-2 gap-6">
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-xl text-primary">Types de résultats</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-3">
-                  <div className="flex items-center space-x-3">
-                    <div className="w-2 h-2 bg-accent rounded-full"></div>
-                    <span className="text-muted-foreground">Classements officiels</span>
-                  </div>
-                  <div className="flex items-center space-x-3">
-                    <div className="w-2 h-2 bg-accent rounded-full"></div>
-                    <span className="text-muted-foreground">Statistiques des joueurs</span>
-                  </div>
-                  <div className="flex items-center space-x-3">
-                    <div className="w-2 h-2 bg-accent rounded-full"></div>
-                    <span className="text-muted-foreground">Historique des tournois</span>
-                  </div>
-                </div>
-              </CardContent>
+          {/* Infos */}
+          <div className="grid md:grid-cols-2 gap-6 mt-10">
+            <Card className="rounded-xl bg-black/50 backdrop-blur-sm border border-white/10 p-6">
+              <h3 className="font-semibold text-white mb-3">Types de résultats</h3>
+              <ul className="list-disc list-inside text-white/85 space-y-1 text-sm">
+                <li>Classements officiels</li>
+                <li>Statistiques des joueurs</li>
+                <li>Historique des tournois</li>
+              </ul>
             </Card>
 
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-xl text-primary">Prochainement</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-3">
-                  <div className="flex items-center space-x-3">
-                    <div className="w-2 h-2 bg-accent rounded-full"></div>
-                    <span className="text-muted-foreground">Résultats en temps réel</span>
-                  </div>
-                  <div className="flex items-center space-x-3">
-                    <div className="w-2 h-2 bg-accent rounded-full"></div>
-                    <span className="text-muted-foreground">Profils des joueurs</span>
-                  </div>
-                  <div className="flex items-center space-x-3">
-                    <div className="w-2 h-2 bg-accent rounded-full"></div>
-                    <span className="text-muted-foreground">Analyses détaillées</span>
-                  </div>
-                </div>
-              </CardContent>
+            <Card className="rounded-xl bg-black/50 backdrop-blur-sm border border-white/10 p-6">
+              <h3 className="font-semibold text-white mb-3">Prochainement</h3>
+              <ul className="list-disc list-inside text-white/85 space-y-1 text-sm">
+                <li>Résultats en temps réel</li>
+                <li>Profils des joueurs</li>
+                <li>Analyses détaillées</li>
+              </ul>
             </Card>
           </div>
         </div>
