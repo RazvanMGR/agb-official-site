@@ -8,7 +8,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   const location = useLocation();
 
   // Pages avec hero plein écran derrière la navbar
-  const isHeroPage = ["/", "/about", "/events"].includes(location.pathname);
+  const isHeroPage = ["/", "/about", "/events", "/results"].includes(location.pathname);
 
   const navigation = [
     { name: "Accueil", href: "/" },
