@@ -34,7 +34,7 @@ const Committee = () => {
         alt=""
         aria-hidden
         draggable="false"
-        className="absolute inset-0 z-0 w-full h-full object-cover blur-sm brightness-[.82] saturate-75 [object-position:center_17.5%]"
+        className="absolute inset-0 z-0 w-full h-full object-cover blur-sm brightness-[.82] saturate-75"
       />
 
       {/* Voile sombre — identique à Events */}
