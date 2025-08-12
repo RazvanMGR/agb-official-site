@@ -13,9 +13,6 @@ const Results = () => {
         className="absolute inset-0 z-0 w-full h-full object-cover blur-sm brightness-[.82] saturate-75"
       />
 
-      {/* Voile sombre */}
-      <div className="fixed inset-0 z-10 bg-black/45 pointer-events-none" />
-
       {/* Contenu */}
       <div className="relative z-20 container mx-auto px-4 pt-32 pb-32">
         <div className="max-w-4xl mx-auto">
