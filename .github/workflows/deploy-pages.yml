@@ -1,4 +1,4 @@
-name: Deploy to GitHub Pages
+name: Deploy to GitHub Pages (Vite)
 
 on:
   push:
@@ -20,20 +20,20 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # Configure GitHub Pages (important)
+      # Configure Pages (important)
       - uses: actions/configure-pages@v5
 
       - uses: actions/setup-node@v4
         with:
-          node-version: "20"   # 18 marche aussi, 20 recommandé
+          node-version: "20"
 
       - run: npm install
-      # Forcer la base spéciale pour Pages (repo = agb-official-site)
+
+      # Build en forçant la base pour le sous-dossier GitHub Pages
       - run: npm run build -- --base=/agb-official-site/
 
-      # SPA: recharger /une-route doit renvoyer index.html
+      # SPA fallback + empêcher Jekyll de filtrer /assets
       - run: cp dist/index.html dist/404.html
-      # Laisser passer /assets sans que Jekyll s’en mêle
       - run: touch dist/.nojekyll
 
       - uses: actions/upload-pages-artifact@v3
