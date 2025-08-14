@@ -1,11 +1,7 @@
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react-swc";
 
-// https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: '/agb-official-site/', // 👈 important pour GitHub Pages
-  build: {
-    outDir: 'dist'
-  }
+  base: "/agb-official-site/", // important pour que JS/CSS soient chargés au bon endroit
 });
