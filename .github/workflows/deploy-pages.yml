@@ -19,27 +19,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
-      # Configure Pages (important)
       - uses: actions/configure-pages@v5
-
       - uses: actions/setup-node@v4
         with:
           node-version: "20"
-
       - run: npm install
-
-      # Build en forçant la base pour le sous-dossier GitHub Pages
-      - run: npm run build -- --base=/agb-official-site/
-
-      # SPA fallback + empêcher Jekyll de filtrer /assets
-      - run: cp dist/index.html dist/404.html
+      - run: npm run build
       - run: touch dist/.nojekyll
-
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist
-
   deploy:
     needs: build
     runs-on: ubuntu-latest
