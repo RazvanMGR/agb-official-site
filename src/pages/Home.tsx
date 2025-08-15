@@ -2,9 +2,8 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 
-/** ————— CTA bouton à droite du HERO ————— */
+/** ————— Gros bouton gris (CTA) qui scrolle vers le formulaire ————— */
 function BigGreyCTA() {
-  // Scroll fluide vers le formulaire
   function goToForm(e: React.MouseEvent) {
     e.preventDefault();
     const el = document.querySelector("#contact-form");
@@ -16,14 +15,9 @@ function BigGreyCTA() {
       href="#contact-form"
       onClick={goToForm}
       className={[
-        // Base bouton (même langage visuel que tes CTA)
         "inline-flex w-full items-center justify-center",
-        // 2x plus haut que tes boutons (h-11) → h-20
         "h-20 px-8 rounded-xl",
-        // Gris transparent (différent de tes CTA blancs)
-        "border border-white/30 bg-zinc-800/30",
-        "backdrop-blur-sm text-white/95",
-        // Hover focus
+        "border border-white/30 bg-zinc-800/30 backdrop-blur-sm text-white/95",
         "hover:bg-zinc-700/40 transition shadow-sm",
       ].join(" ")}
       aria-label="Aller au formulaire de contact"
@@ -33,7 +27,7 @@ function BigGreyCTA() {
   );
 }
 
-/** ————— Carte formulaire (section bas de page) ————— */
+/** ————— Section formulaire en bas de page ————— */
 function ContactFormSection() {
   const [etat, setEtat] = useState<"idle" | "envoi" | "ok" | "erreur">("idle");
 
@@ -55,7 +49,8 @@ function ContactFormSection() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
-      if (res.ok) {
+      const json = await res.json().catch(() => ({}));
+      if (res.ok && json?.ok !== false) {
         setEtat("ok");
         form.reset();
       } else {
@@ -212,7 +207,7 @@ const Home = () => {
             <source src="/background.mp4" type="video/mp4" />
           </video>
 
-        {/* Overlay cinéma */}
+          {/* Overlay cinéma */}
           <div className="absolute inset-0 z-10 bg-gradient-to-r from-black/80 via-black/60 to-transparent rounded-b-[2rem]" />
         </div>
 
